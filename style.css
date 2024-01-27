@@ -360,6 +360,7 @@ form button:hover {
 }
 
 .main {
+  border-radius: 2rem;
   margin-top: 50px;
     height: 90vh;
     width: 80%;
@@ -766,6 +767,8 @@ form button:hover {
     color: var(--white);
     background-color: var(--primary-color);
     border-radius: 100%;
+    width: 60px;
+    height: 60px;
     cursor: pointer;
     transition: 0.3s;
   }
