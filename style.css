@@ -363,7 +363,7 @@ form button:hover {
   border-radius: 2rem;
   margin-top: 50px;
     height: 90vh;
-    width: 80%;
+    width: 93%;
   }
   .wrapper,
   .slide {
@@ -521,7 +521,7 @@ form button:hover {
     letter-spacing: 1px;
     cursor: pointer;
     margin-top: 12px;
-    border: 2px solid #f1d6a5;
+    border: 2px solid #50262f;
     transition: all 0.3s ease-in-out;
   }
   .content .right input[type="submit"]:hover{
@@ -587,14 +587,14 @@ form button:hover {
   
   /* booking */
   :root {
-    margin-top: 40px;
+    margin-top: 50px;
     --primary-color: #50262f;
     --primary-color-dark: #50262f;
     --text-dark: #333333;
     --text-light: #767268;
     --extra-light: #f3f4f6;
     --white: #ffffff;
-    --max-width: 1200px;
+    --max-width: 1450px;
   }
   
   .section__container {
@@ -775,3 +775,4 @@ form button:hover {
   
   .booking__container .btn:hover {
     background-color: var(--primary-color-dark);}
+    border-radius: 100%;
