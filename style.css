@@ -589,7 +589,7 @@ form button:hover {
   :root {
     margin-top: 50px;
     --primary-color: #50262f;
-    --primary-color-dark: #50262f;
+    --primary-color-dark: #f1d6a5;
     --text-dark: #333333;
     --text-light: #767268;
     --extra-light: #f3f4f6;
@@ -671,12 +671,52 @@ form button:hover {
         rgba(80, 38, 47, 0.9),
         rgba(100, 125, 187, 0.1)
       ),
-      url("1.png");
+      url("3.png");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 2rem;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 5s;
+
+    animation-name: animate;
+    animation-direction: alternate-reverse;
+    animation-play-state: running;
+    animation-timing-function: ease-in-out;
+    animation-duration: 20s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    filter: sepia(30%);
   }
+
+  @keyframes animate {
+    0% {
+        background-image: url(1.png);
+    }
+
+    20% {
+        background-image: url(3.png);
+    }
+
+    40% {
+        background-image: url(events.jpg);
+    }
+
+    60% {
+        background-image: url(logo.jpg);
+    }
+
+    80% {
+        background-image: url(rica.png);
+    }
+
+    100% {
+        background-image: url(sienalogo.png);
+    }
+}
   
   .header__content {
     max-width: 600px;
@@ -763,16 +803,16 @@ form button:hover {
     padding: 1rem;
     outline: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: var(--white);
     background-color: var(--primary-color);
-    border-radius: 100%;
-    width: 60px;
-    height: 60px;
+    border-radius: 10%;
+    width: 100px;
+    height: 50px;
     cursor: pointer;
     transition: 0.3s;
   }
   
-  .booking__container .btn:hover {
-    background-color: var(--primary-color-dark);}
-    border-radius: 100%;
+  
+
+ 
