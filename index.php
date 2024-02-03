@@ -87,7 +87,9 @@
                             }
 
                             echo '<li class="alert alert-danger fw-bold">'.$errorMsg.'</li>';
-                        }
+                        } else if (isset($_GET['success'])) {
+                          echo '<li class="alert alert-success fw-bold">Account created! Please login to your account.</li>';
+                      }
                     ?>
                     <div class="input-field">
                         <input type="text" required>
