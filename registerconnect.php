@@ -42,7 +42,7 @@
             $stmt2 = $conn->prepare($qry2);
             $stmt2->bind_param("sss", $cust_email, $cust_uname, $cust_pass);//
             $stmt2->execute();
-            header("location: ../index.php?success=1");
+            header("location: ../index.php?success=1"); // teka ayaw mag commit
             $conn->close();
             exit();
         }
