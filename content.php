@@ -31,7 +31,7 @@
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="#">Home</a></li>
                 <li><a href="booking.html">Booking</a></li>
-                <li><a href="index.php"><span class="home"> Content</span></a></li>
+                <li><a href="content.php"><span class="home"> Content</span></a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
         </nav>    
