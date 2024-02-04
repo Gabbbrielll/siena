@@ -12,7 +12,7 @@
         return $input;
     } 
 
-    function checkDuplicateUsername($cust_email) : bool {//
+    function checkDuplicateUsername($cust_email) : bool {
         global $conn;
 
         $qry1 = "SELECT cust_email FROM customer WHERE cust_email = ?;";
@@ -26,23 +26,23 @@
     }
 
     if (isset($_POST['register'])) {
-        $cust_email           = prepareInput($_POST['cust_email']);//
+        $cust_email           = prepareInput($_POST['cust_email']);
         $cust_uname        = prepareInput($_POST['cust_uname']);
         $cust_pass           = md5(prepareInput($_POST['cust_pass']));
         $confirmPassword    = md5(prepareInput($_POST['confirmPassword']));
 
-        if (checkDuplicateUsername($cust_email)) {//
-            header("location: ../index.php?regerror=1");
+        if (checkDuplicateUsername($cust_email)) {
+            header("location: /siena-main/content.php?regerror=1");
             exit();
-        } else if(strcmp($cust_pass, $confirmPassword) != 0) {
-            header("location: ../index.php?regerror=2");
+        } else if($cust_pass != $confirmPassword) {
+            header("location: /siena-main/content.php?regerror=2");
             exit();
         } else {
             $qry2 = "INSERT INTO customer (cust_email, cust_uname, cust_pass) VALUES (?, ?, ?)";
             $stmt2 = $conn->prepare($qry2);
-            $stmt2->bind_param("sss", $cust_email, $cust_uname, $cust_pass);//
+            $stmt2->bind_param("sss", $cust_email, $cust_uname, $cust_pass);
             $stmt2->execute();
-            header("location: ../index.php?success=1"); // teka ayaw mag commit
+            header("location: /siena-main/content.php?success=1"); 
             $conn->close();
             exit();
         }
