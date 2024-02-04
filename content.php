@@ -37,7 +37,7 @@
         </nav>    
     </header>
     
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <div class="blur-bg-overlay"></div>
     <div class="form-popup">
         <span class="close-btn material-symbols-rounded">close</span>
@@ -73,38 +73,42 @@
             </div>
             <div class="form-content">
                 <h2>SIGNUP</h2>
-                <form action="POST" action="registerconnect.php">
+                <form method="POST" action="registerconnect.php">
                 <?php 
                         $errorMsg = "";
 
-                        if (isset($_GET['error'])) {
+                        function function_alert($errorMsg) { 
+                          echo "<script>alert('$errorMsg');</script>"; 
+                      } 
+
+                        if (isset($_GET['regerror'])) {
                             switch ($_GET['regerror']) {
                                 case 1:
-                                    $errorMsg = "Email has already been taken! Please try again.";
+                                    function_alert("Email has already been taken! Please try again.");
                                     break;
                                 case 2:
-                                    $errorMsg = "Password must be identical! Please try again.";
+                                    function_alert("Password must be identical! Please try again.");
+                                    break;
                             }
 
-                            echo '<li class="alert alert-danger fw-bold">'.$errorMsg.'</li>';
                         } else if (isset($_GET['success'])) {
-                          echo '<li class="alert alert-success fw-bold">Account created! Please login to your account</li>';
+                          function_alert("Account created! Please login to your account");
                       }
                     ?>
                     <div class="input-field">
-                        <input type="text" required>
+                        <input type="text" name="cust_email" required>
                         <label>Enter your email</label>
                     </div>
                     <div class="input-field">
-                        <input type="text" required>
+                        <input type="text" name="cust_uname"required>
                         <label>Enter your Username</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" required>
+                        <input type="password" name="cust_pass" required>
                         <label>Create password</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" required>
+                        <input type="password" name="confirmPassword" required>
                         <label>Confirm password</label>
                     </div>
                     <div class="policy-text">
@@ -123,7 +127,7 @@
             </div>
         </div>
     </div>
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
     <div>
         <section class="main swiper mySwiper">
