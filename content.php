@@ -29,8 +29,8 @@
             </a>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
-                <li><a href="#">Home</a></li>
-                <li><a href="booking.html">Booking</a></li>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="booking.php">Booking</a></li>
                 <li><a href="content.php"><span class="home"> Content</span></a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
@@ -136,7 +136,7 @@
                   </h2>
                   <span class="text"> Elevate your events in a larger setting, perfect for creating memorable moments with a touch of grandeur. <br> Versatile and inviting, Joaquin's Hall is the ideal canvas for your unique celebrations. </span>
                 </br>
-                  <a href="booking.html" class="button">Book now</a>
+                  <a href="booking.php" class="button">Book now</a>
                 </div>
               </div>
               <div class="slide swiper-slide">
@@ -147,7 +147,7 @@
                   </h2>
                   <span class="text"> An Intimate indoor elegance. Ideal for creating magical moments in a cozy setting perfect for all your special occasions at Siena’s Events Place, Rica’s Hall. </span>
                 </br>
-                  <a href="booking.html" class="button">Book now</a>
+                  <a href="booking.php" class="button">Book now</a>
                 </div>
               </div>
               <div class="slide swiper-slide">
@@ -158,7 +158,7 @@
                   </h2>
                   <span class="text"> Siena’s Events Place Grandest outdoor venue, The Garden. Perfect for rustic themed events and set-ups with lush greenery and elegant designs</span>
                 </br>
-                  <a href="booking.html" class="button">Book now</a>
+                  <a href="booking.php" class="button">Book now</a>
                 </div>
               </div>
             </div>

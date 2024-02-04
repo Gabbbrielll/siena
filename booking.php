@@ -29,8 +29,8 @@
             </a>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
-                <li><a href="#">Home</a></li>
-                <li><a href="booking.html"><span class="home">Booking</span></a></li>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="booking.php"><span class="home">Booking</span></a></li>
                 <li><a href="content.php">Content</a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
@@ -111,28 +111,28 @@
           <div class="form__group">
             <div class="input__group">
               <input type="text" />
-              <label>Venue <i class="ri-arrow-down-s-fill"></i></label>
+              <label>Venue </label>
             </div>
             <p>Select a venue</p>
           </div>
           <div class="form__group">
             <div class="input__group">
               <input type="text" />
-              <label>Date<i class="ri-arrow-down-s-fill"></i></label>
+              <label>Date</label>
             </div>
             <p>Add date</p>
           </div>
           <div class="form__group">
             <div class="input__group">
               <input type="text" />
-              <label>Time<i class="ri-arrow-down-s-fill"></i></label>
+              <label>Time</label>
             </div>
             <p>Add Time</p>
           </div>
           <div class="form__group">
             <div class="input__group">
               <input type="text" />
-              <label>Package<i class="ri-arrow-down-s-fill"></i></label>
+              <label>Package</label>
             </div>
             <p>Select a Package</p>
           </div>
