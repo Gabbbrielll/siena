@@ -114,8 +114,8 @@ h4{
     opacity: 0;
     pointer-events: none;
     max-width: 720px;
-    background: #fff;
-    border: 2px solid #fff;
+    background: #50262f;
+    border: 2px solid #50262f;
     transform: translate(-50%, -70%);
 }
 
@@ -130,7 +130,7 @@ h4{
     position: absolute;
     top: 12px;
     right: 12px;
-    color: #f1d6a5;
+    color: #50262f;
     cursor: pointer;
 }
 
@@ -159,7 +159,7 @@ h4{
 
 .form-box .form-details {
     width: 100%;
-    color: #fff;
+    color: #50262f;
     max-width: 330px;
     text-align: center;
     display: flex;
@@ -251,7 +251,7 @@ form :where(.forgot-pass-link, .policy-text) {
 
 form button {
     width: 100%;
-    color: #fff;
+    color: #50262f;
     border: none;
     outline: none;
     padding: 14px 0;
