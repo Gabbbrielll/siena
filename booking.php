@@ -29,9 +29,8 @@
             </a>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
-                <li><a href="home.php">Home</a></li>
+                <li><a href="content.php">Home</a></li>
                 <li><a href="booking.php"><span class="home">Booking</span></a></li>
-                <li><a href="content.php">Content</a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
         </nav>    
@@ -107,7 +106,7 @@
         <p>Create a memorable experience with Siena's</p>
       </div>
       <div class="booking__container">
-        <form>
+        <form method="">
           <div class="form__group">
             <div class="input__group">
               <input type="text" />

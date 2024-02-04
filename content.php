@@ -25,13 +25,11 @@
             <span class="hamburger-btn material-symbols-rounded">menu</span>
             <a class="logo">
                 <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
-                
             </a>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
-                <li><a href="home.php">Home</a></li>
+                <li><a href="content.php"><span class="home"> Home</span></a></li>
                 <li><a href="booking.php">Booking</a></li>
-                <li><a href="content.php"><span class="home"> Content</span></a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
         </nav>    
