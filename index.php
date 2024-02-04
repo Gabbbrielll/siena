@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siena's Events Place</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet"/>
@@ -31,7 +31,7 @@
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="#">Home</a></li>
                 <li><a href="booking.html">Booking</a></li>
-                <li><a href="index.html"><span class="home"> Content</span></a></li>
+                <li><a href="index.php"><span class="home"> Content</span></a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
         </nav>    
@@ -51,7 +51,7 @@
                 <form action="#">
                     <div class="input-field">
                         <input type="text" required>
-                        <label>Email</label>
+                        <label>Email/Username</label>
                     </div>
                     <div class="input-field">
                         <input type="password" required>
@@ -96,8 +96,16 @@
                         <label>Enter your email</label>
                     </div>
                     <div class="input-field">
+                        <input type="text" required>
+                        <label>Enter your Username</label>
+                    </div>
+                    <div class="input-field">
                         <input type="password" required>
                         <label>Create password</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" required>
+                        <label>Confirm password</label>
                     </div>
                     <div class="policy-text">
                         <input type="checkbox" id="policy">
