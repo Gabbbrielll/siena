@@ -36,7 +36,8 @@
             </ul>
         </nav>    
     </header>
-
+    
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     <div class="blur-bg-overlay"></div>
     <div class="form-popup">
         <span class="close-btn material-symbols-rounded">close</span>
@@ -72,7 +73,24 @@
             </div>
             <div class="form-content">
                 <h2>SIGNUP</h2>
-                <form action="#">
+                <form action="POST" action="registerconnect.php">
+                <?php 
+                        $errorMsg = "";
+
+                        if (isset($_GET['error'])) {
+                            switch ($_GET['regerror']) {
+                                case 1:
+                                    $errorMsg = "Email has already been taken! Please try again.";
+                                    break;
+                                case 2:
+                                    $errorMsg = "Password must be identical! Please try again.";
+                            }
+
+                            echo '<li class="alert alert-danger fw-bold">'.$errorMsg.'</li>';
+                        } else if (isset($_GET['success'])) {
+                          echo '<li class="alert alert-success fw-bold">Account created! Please login to your account</li>';
+                      }
+                    ?>
                     <div class="input-field">
                         <input type="text" required>
                         <label>Enter your email</label>
@@ -88,7 +106,7 @@
                             <a href="#" class="option">Terms & Conditions</a>
                         </label>
                     </div>
-                    <button type="submit">Sign Up</button>
+                    <button type="submit" name="register">Sign Up</button>
                 </form>
                 <div class="bottom-link">
                     Already have an account? 
@@ -97,6 +115,7 @@
             </div>
         </div>
     </div>
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     <div>
         <section class="main swiper mySwiper">
