@@ -7,6 +7,11 @@
   } else {
       $username = ''; // Set username to empty if user is not logged in
   }
+//   if(isset($_SESSION['ad_uname'])) {
+//     $username = $_SESSION['ad_uname'];
+// } else {
+//     $username = ''; // Set username to empty if user is not logged in
+// }
 ?>
 <!DOCTYPE html>
 <br lang="en">
@@ -30,7 +35,7 @@
 </head>
 <br>
 
-    <header>
+<header>
         <nav class="navbar">
             <span class="hamburger-btn material-symbols-rounded">menu</span>
             <a class="logo">
@@ -39,14 +44,20 @@
 
             <?php if(!empty($username)) { ?>
               <h2>Welcome! <?php echo $username; ?></h2>
-            <?php } ?>
-            
+              <ul class="links">
+                  <span class="close-btn material-symbols-rounded">close</span>
+                  <li><a href="content.php">Home</a></li>
+                  <li><a href="booking.php"><span class="home">Booking</span></a></li>
+                  <a href="logout.php" class="logout-btn">LOG OUT</a>
+              </ul>
+          <?php } else { ?>
             <ul class="links">
-                <span class="close-btn material-symbols-rounded">close</span>
-                <li><a href="content.php">Home</a></li>
-                <li><a href="booking.php"><span class="home">Booking</span></a></li>
-                <button class="login-btn">LOG IN</button>
-            </ul>
+                  <span class="close-btn material-symbols-rounded">close</span>
+                  <li><a href="content.php">Home</a></li>
+                  <li><a href="booking.php"><span class="home">Booking</span></a></li>
+                  <button class="login-btn">LOG IN</button>
+              </ul>
+          <?php } ?>
         </nav>    
     </header>
 
