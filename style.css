@@ -10,7 +10,8 @@
 body {
     height: 100vh;
     width: 100%;
-    background: #50262f;}
+    background: #50262f;
+  }
 
 header {
     position: absolute;
@@ -752,6 +753,7 @@ form button:hover {
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
   }
   
+  /* drop down
   .booking__container form {
     width: 100%;
     flex: 1;
@@ -798,6 +800,8 @@ form button:hover {
     font-size: 0.8rem;
     color: var(--text-light);
   }
+  */
+
   
   .booking__container .btn {
     padding: 1rem;
@@ -811,6 +815,93 @@ form button:hover {
     height: 50px;
     cursor: pointer;
     transition: 0.3s;
+  }
+
+  .dropdown{
+    min-width: 13em;
+    position: relative;
+    
+    width: 50%;
+  }
+
+  .dropdown * {
+    box-sizing: border-box;
+  }
+
+  .select{
+    background: #50262f;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px #f1d6a5 solid;
+    border-radius: 1.5rem;
+    padding: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 50%;
+    
+  }
+
+  .select-clicked{
+    border: 2px #f1d6a5 solid;
+    box-shadow: 0 0 0.8em #50262f;
+  }
+
+  .select:hover{
+    background: #50262f;
+  }
+
+  .caret{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #fff;
+    transition: 0.3s;
+  }
+
+  .caret-rotate{
+    transform: rotate(180deg);
+  }
+
+  .menu{
+    list-style: none;
+    padding: 0.2em 0.5em;
+    background: #323741;
+    border: 1px #363a43 solid;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    border-radius: 0.5em;
+    color: #9fa5b5;
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+  }
+
+  .menu li{
+    padding: 0.7em 0.5em;
+    margin: 0.3em 0;
+    border-radius: 0.5em;
+    cursor: pointer;
+  }
+
+  .menu li:hover{
+    background: #2a2d35;
+  }
+
+  .active{
+    background: #23242a;
+  }
+
+  .menu-open{
+    display: block;
+    opacity: 1;
   }
   
   

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet"/>
-    <script src="script.js" defer></script>
+    <script src="Script.js" defer></script>
 
     <style>
       .home{
@@ -106,45 +106,61 @@
         <p>Create a memorable experience with Siena's</p>
       </div>
       <div class="booking__container">
-        <form method="">
-          <div class="form__group">
-            <div class="input__group">
-              <input type="text" />
-              <label>Venue </label>
-            </div>
-            <p>Select a venue</p>
-          </div>
-          <div class="form__group">
-            <div class="input__group">
-              <input type="text" />
-              <label>Date</label>
-            </div>
-            <p>Add date</p>
-          </div>
-          <div class="form__group">
-            <div class="input__group">
-              <input type="text" />
-              <label>Time</label>
-            </div>
-            <p>Add Time</p>
-          </div>
-          <div class="form__group">
-            <div class="input__group">
-              <input type="text" />
-              <label>Package</label>
-            </div>
-            <p>Select a Package</p>
-          </div>
-        </form>
+
+
+      <div class="dropdown">
+        <div class="select">
+          <span class="selected"> Venue </span>
+          <div class="caret"></div>
+      </div>
+        <ul class="menu">
+          <li class="active"> Venue </li>
+          <li value="garden"> The garden </li>
+          <li value="rica"> Rica's hall </li>
+          <li value="joaquin"> Joaquin's hall </li>
+        </ul>
+    </div>
+
+    <div class="dropdown">
+        <div class="select">
+          <span class="selected"> Package </span>
+          <div class="caret"></div>
+      </div>
+        <ul class="menu">
+          <li class="active"> Package</li>
+          <li value=""> bongga! </li>
+          <li value=""> pwede na </li>
+          <li value=""> tagtipid </li>
+        </ul>
+    </div>
+
+    <div class="dropdown">
+        <div class="select">
+          <span class="selected"> Date </span>
+          <div class="caret"></div>
+      </div>
+        <ul class="menu">
+          <input type="date">
+        </ul>
+    </div>
+
+    <div class="dropdown">
+        <div class="select">
+          <span class="selected"> Time </span>
+          <div class="caret"></div>
+      </div>
+        <ul class="menu">
+          <input type="time">
+        </ul>
+    </div>
         
         <button class="btn"><p> Submit</p></button>
        
-      
       </div>
     </div>
     </div>
 
-  </br> </br>
+  </br> </br></br> </br></br> </br>
 
     <footer>
         <div class="content">
