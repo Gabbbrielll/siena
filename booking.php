@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    $conn = new  mysqli("localhost", "root", "", "sienas_events_place");
+
+    if(isset($_SESSION['cust_uname'])) {
+      $username = $_SESSION['cust_uname'];
+  } else {
+      $username = ''; // Set username to empty if user is not logged in
+  }
+?>
 <!DOCTYPE html>
 <br lang="en">
 <head>
@@ -25,8 +35,12 @@
             <span class="hamburger-btn material-symbols-rounded">menu</span>
             <a class="logo">
                 <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
-                
             </a>
+
+            <?php if(!empty($username)) { ?>
+              <h2>Welcome! <?php echo $username; ?></h2>
+            <?php } ?>
+            
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="content.php">Home</a></li>

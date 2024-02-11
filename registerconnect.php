@@ -32,18 +32,21 @@
         $confirmPassword    = md5(prepareInput($_POST['confirmPassword']));
 
         if (checkDuplicateUsername($cust_email)) {
-            header("location: /siena-main/content.php?regerror=1");
+            echo "<script>alert('Email has already been taken! Please try again.');</script>";
+            echo "<script>window.location.href = 'content.php';</script>";
             exit();
         } else if($cust_pass != $confirmPassword) {
-            header("location: /siena-main/content.php?regerror=2");
+            echo "<script>alert('Password must be identical! Please try again.');</script>";
+            echo "<script>window.location.href = 'content.php';</script>";
             exit();
         } else {
             $qry2 = "INSERT INTO customer (cust_email, cust_uname, cust_pass) VALUES (?, ?, ?)";
             $stmt2 = $conn->prepare($qry2);
             $stmt2->bind_param("sss", $cust_email, $cust_uname, $cust_pass);
             $stmt2->execute();
-            header("location: /siena-main/content.php?success=1"); 
             $conn->close();
+            echo "<script>alert('Account created! Please login to your account');</script>";
+            echo "<script>window.location.href = 'content.php';</script>";
             exit();
         }
     }

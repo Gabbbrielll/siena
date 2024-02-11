@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    $conn = new  mysqli("localhost", "root", "", "sienas_events_place");
+
+    if(isset($_SESSION['cust_uname'])) {
+      $username = $_SESSION['cust_uname'];
+  } else {
+      $username = ''; // Set username to empty if user is not logged in
+  }
+?>
 <!DOCTYPE html>
 <br lang="en">
 <head>
@@ -26,9 +36,14 @@
             <a class="logo">
                 <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
             </a>
+
+            <?php if(!empty($username)) { ?>
+              <h2>Welcome! <?php echo $username; ?></h2>
+            <?php } ?>
+
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
-                <li><a href="content.php"><span class="home"> Home</span></a></li>
+                <li><a href="content.php"><span class="home">Home</span></a></li>
                 <li><a href="booking.php">Booking</a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
@@ -46,17 +61,17 @@
             </div>
             <div class="form-content">
                 <h2>LOGIN</h2>
-                <form action="#">
+                <form method="POST" action="loginconnect.php">
                     <div class="input-field">
-                        <input type="text" required>
-                        <label>Email/Username</label>
+                        <input type="text" name="cust_email" required>
+                        <label>Email</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" required>
+                        <input type="password" name="cust_pass" required>
                         <label>Password</label>
                     </div>
                     <a href="#" class="forgot-pass-link">Forgot password?</a>
-                    <button type="submit">Log In</button>
+                    <button type="submit" name="login">Log In</button>
                 </form>
                 <div class="bottom-link">
                     Don't have an account?
@@ -72,27 +87,6 @@
             <div class="form-content">
                 <h2>SIGNUP</h2>
                 <form method="POST" action="registerconnect.php">
-                <?php 
-                        $errorMsg = "";
-
-                        function function_alert($errorMsg) { 
-                          echo "<script>alert('$errorMsg');</script>"; 
-                      } 
-
-                        if (isset($_GET['regerror'])) {
-                            switch ($_GET['regerror']) {
-                                case 1:
-                                    function_alert("Email has already been taken! Please try again.");
-                                    break;
-                                case 2:
-                                    function_alert("Password must be identical! Please try again.");
-                                    break;
-                            }
-
-                        } else if (isset($_GET['success'])) {
-                          function_alert("Account created! Please login to your account");
-                      }
-                    ?>
                     <div class="input-field">
                         <input type="text" name="cust_email" required>
                         <label>Enter your email</label>
