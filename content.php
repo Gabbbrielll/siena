@@ -1,12 +1,12 @@
 <?php
-    session_start();
+    /* session_start();
     $conn = new  mysqli("localhost", "root", "", "sienas_events_place");
 
     if(isset($_SESSION['cust_uname'])) {
       $username = $_SESSION['cust_uname'];
   } else {
       $username = ''; // Set username to empty if user is not logged in
-  }
+  } */
 ?>
 <!DOCTYPE html>
 <br lang="en">
@@ -104,7 +104,7 @@
                         <label>Confirm password</label>
                     </div>
                     <div class="policy-text">
-                        <input type="checkbox" id="policy">
+                        <input type="checkbox" id="policy" required name="checkbox" value="check" id="agree">
                         <label for="policy">
                             I agree the
                             <a href="#" class="option">Terms & Conditions</a>
@@ -120,6 +120,53 @@
         </div>
     </div>
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<div>
+        <section class="main swiper mySwiper">
+            <div class="wrapper swiper-wrapper">
+              <div class="slide swiper-slide">
+                <img src="sienalogo.png" alt="" class="image" />
+                <div class="image-data">
+                  <h2>
+                    Your event's one stop shop
+                  </h2>
+                  <span class="text"> Know your events venue. </span>
+                </br>
+                  <a href="booking.php" class="button">Book now</a>
+                </div>
+              </div>
+          </section>
+    </div>
+
+    </br></br>
+
+    <section class="container py-5" id="skills">
+      <div class="row mt-4 py-3">
+        <div class="col-12 d-flex flex-column text-center justify-content-center">
+          <h2>Venues</h2>
+          <h5 class="text-secondary fw-normal py-2 fst-italic">These are the only venues that can be booked in Siena's Events Place.</h5>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-between mx-0">
+        <div class="card mt-5 d-flex flex-column align-items-center text-center bg-white p-4" style="width: 25rem">
+          <i class="text-white bg-primary d-flex align-items-center justify-content-center fs-2 rounded-circle fa-solid fa-cart-shopping"></i>
+          <h3 class="mt-4 h4">The Garden</h3>
+          <p class="text-center"> Halaman </p>
+        </div>
+        <div class="card mt-5 d-flex flex-column align-items-center text-center bg-white p-4" style="width: 25rem">
+          <i class="text-white bg-primary d-flex align-items-center justify-content-center fs-2 rounded-circle fa-solid fa-laptop"></i>
+          <h3 class="mt-4 h4">Rica's Hall</h3>
+          <p class="text-center"> Malaki</p>
+        </div>
+        <div class="card mt-5 d-flex flex-column align-items-center text-center bg-white p-4" style="width: 25rem">
+          <i class="text-white bg-primary d-flex align-items-center justify-content-center fs-2 rounded-circle fa-solid fa-mobile-screen-button"></i>
+          <h3 class="mt-4 h4">Joaquin's Hall</h3>
+          <p class="text-center"> Parang Ricas hall</p>
+        </div>
+      </div>
+    </section>
+
+    </br></br>
 
     <div>
         <section class="main swiper mySwiper">
@@ -182,7 +229,6 @@
       </script>
 
     </br></br>
-
 
     <footer>
         <div class="content">

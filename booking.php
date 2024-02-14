@@ -1,12 +1,12 @@
-<?php
-    session_start();
+  <?php
+   /*  session_start();
     $conn = new  mysqli("localhost", "root", "", "sienas_events_place");
 
     if(isset($_SESSION['cust_uname'])) {
       $username = $_SESSION['cust_uname'];
   } else {
       $username = ''; // Set username to empty if user is not logged in
-  }
+  } */
 ?>
 <!DOCTYPE html>
 <br lang="en">
@@ -97,8 +97,8 @@
                         <label>Create password</label>
                     </div>
                     <div class="policy-text">
-                        <input type="checkbox" id="policy">
-                        <label for="policy">
+                        <input type="checkbox" id="policy" required name="checkbox" value="check" id="agree">
+                        <label for="policy"> 
                             I agree the
                             <a href="#" class="option">Terms & Conditions</a>
                         </label>
