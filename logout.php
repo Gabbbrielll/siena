@@ -1,6 +1,6 @@
 <?php
 	session_start();
     session_destroy();
-    header('location: content.php');
-    
+    echo "<script>alert('Logged out succesfully');</script>";
+    echo "<script>window.location.href = 'content.php';</script>";
 ?>
