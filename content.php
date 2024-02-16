@@ -122,9 +122,21 @@
                     Already have an account? 
                     <a href="#" id="login-link">Login</a>
                 </div>
-            </div>
+            </div>  
         </div>
     </div>
+    <!--
+    <script>
+    function validateForm() {
+        var checkbox = document.getElementById("policy");
+        if (!checkbox.checked) {
+            alert("Please agree to the Terms & Conditions.");
+            return false;
+        }
+        return true;
+    }
+</script>
+  -->
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <div>

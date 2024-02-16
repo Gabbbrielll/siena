@@ -1,4 +1,4 @@
-  <?php
+<?php
    /*  session_start();
     $conn = new  mysqli("localhost", "root", "", "sienas_events_place");
 
@@ -52,7 +52,7 @@
 
   </br>
 
-    <div class="blur-bg-overlay"></div>
+  <div class="blur-bg-overlay"></div>
     <div class="form-popup">
         <span class="close-btn material-symbols-rounded">close</span>
         <div class="form-box login">
@@ -62,17 +62,17 @@
             </div>
             <div class="form-content">
                 <h2>LOGIN</h2>
-                <form action="#">
+                <form method="POST" action="loginconnect.php">
                     <div class="input-field">
-                        <input type="text" required>
+                        <input type="text" name="cust_email" required>
                         <label>Email</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" required>
+                        <input type="password" name="cust_pass" required>
                         <label>Password</label>
                     </div>
                     <a href="#" class="forgot-pass-link">Forgot password?</a>
-                    <button type="submit">Log In</button>
+                    <button type="submit" name="login">Log In</button>
                 </form>
                 <div class="bottom-link">
                     Don't have an account?
@@ -87,29 +87,37 @@
             </div>
             <div class="form-content">
                 <h2>SIGNUP</h2>
-                <form action="#">
+                <form method="POST" action="registerconnect.php">
                     <div class="input-field">
-                        <input type="text" required>
+                        <input type="text" name="cust_email" required>
                         <label>Enter your email</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" required>
+                        <input type="text" name="cust_uname"required>
+                        <label>Enter your Username</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="cust_pass" required>
                         <label>Create password</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="confirmPassword" required>
+                        <label>Confirm password</label>
                     </div>
                     <div class="policy-text">
                         <input type="checkbox" id="policy" required name="checkbox" value="check" id="agree">
-                        <label for="policy"> 
+                        <label for="policy">
                             I agree the
                             <a href="#" class="option">Terms & Conditions</a>
                         </label>
                     </div>
-                    <button type="submit">Sign Up</button>
+                    <button type="submit" name="register">Sign Up</button>
                 </form>
                 <div class="bottom-link">
                     Already have an account? 
                     <a href="#" id="login-link">Login</a>
                 </div>
-            </div>
+            </div>  
         </div>
     </div>
 
