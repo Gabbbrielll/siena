@@ -30,7 +30,7 @@
 </head>
 <br>
 
-    <header>
+<header>
         <nav class="navbar">
             <span class="hamburger-btn material-symbols-rounded">menu</span>
             <a class="logo">
@@ -39,19 +39,24 @@
 
             <?php if(!empty($username)) { ?>
               <h2>Welcome! <?php echo $username; ?></h2>
-            <?php } ?>
-            
+              <ul class="links">
+                  <span class="close-btn material-symbols-rounded">close</span>
+                  <li><a href="content.php">Home</a></li>
+                  <li><a href="booking.php"><span class="home">Booking</span></a></li>
+                  <a href="logout.php" class="logout-btn">LOG OUT</a>
+              </ul>
+          <?php } else { ?>
             <ul class="links">
-                <span class="close-btn material-symbols-rounded">close</span>
-                <li><a href="content.php">Home</a></li>
-                <li><a href="booking.php"><span class="home">Booking</span></a></li>
-                <button class="login-btn">LOG IN</button>
-            </ul>
+                  <span class="close-btn material-symbols-rounded">close</span>
+                  <li><a href="content.php">Home</a></li>
+                  <li><a href="booking.php"><span class="home">Booking</span></a></li>
+                  <button class="login-btn">LOG IN</button>
+              </ul>
+          <?php } ?>
         </nav>    
     </header>
 
-  </br>
-
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <div class="blur-bg-overlay"></div>
     <div class="form-popup">
         <span class="close-btn material-symbols-rounded">close</span>
@@ -87,9 +92,9 @@
             </div>
             <div class="form-content">
                 <h2>SIGNUP</h2>
-                <form method="POST" action="registerconnect.php">
+                <form method="POST" action="registerconnect.php" onsubmit="return validateForm()">
                     <div class="input-field">
-                        <input type="text" name="cust_email" required>
+                        <input type="text" name="cust_email" id="email" required>
                         <label>Enter your email</label>
                     </div>
                     <div class="input-field">
@@ -97,7 +102,7 @@
                         <label>Enter your Username</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" name="cust_pass" required>
+                        <input type="password" name="cust_pass" id="password" required>
                         <label>Create password</label>
                     </div>
                     <div class="input-field">
@@ -120,6 +125,72 @@
             </div>  
         </div>
     </div>
+  <script>
+    function validateEmail(email) {
+        // Regular expression for basic email validation
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    function validatePassword(password) {
+        // Minimum password length (NIST recommends at least 8 characters)
+        var minLength = 8;
+        // Maximum password length (NIST recommends no more than 64 characters)
+        var maxLength = 64;
+        // Regular expressions for character types
+        var uppercaseRegex = /[A-Z]/;
+        var lowercaseRegex = /[a-z]/;
+        var digitRegex = /\d/;
+        var specialCharRegex = /[!@#$%^&*()_+[\]{};':"\\|,.<>/?]/;
+
+        // Check if password meets length requirements
+        if (password.length < minLength || password.length > maxLength) {
+            return false;
+        }
+        // Check if password contains at least one uppercase letter
+        if (!uppercaseRegex.test(password)) {
+            return false;
+        }
+        // Check if password contains at least one lowercase letter
+        if (!lowercaseRegex.test(password)) {
+            return false;
+        }
+        // Check if password contains at least one digit
+        if (!digitRegex.test(password)) {
+            return false;
+        }
+        // Check if password contains at least one special character
+        if (!specialCharRegex.test(password)) {
+            return false;
+        }
+        // Password meets all requirements
+        return true;
+    }
+
+    function validateForm() {
+        var emailInput = document.getElementById("email");
+        var email = emailInput.value.trim();
+        var passwordInput = document.getElementById("password");
+        var password = passwordInput.value.trim();
+
+        // Check if the email is valid
+        if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            emailInput.focus();
+            return false;
+        }
+
+        // Check if the password is valid based on NIST standards
+        if (!validatePassword(password)) {
+            alert("Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.");
+            passwordInput.focus();
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
     <div class="section__container header__container">
     <div class="header__image__container">
