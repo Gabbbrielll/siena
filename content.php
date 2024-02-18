@@ -138,7 +138,6 @@
                   </h2>
                   <span class="text"> Know your events venue. </span>
                 </br>
-                  <a href="booking.php" class="button">Book now</a>
                 </div>
               </div>
           </section>
