@@ -1,12 +1,12 @@
 <?php
-    /* session_start();
+    session_start();
     $conn = new  mysqli("localhost", "root", "", "sienas_events_place");
 
     if(isset($_SESSION['cust_uname'])) {
       $username = $_SESSION['cust_uname'];
   } else {
       $username = ''; // Set username to empty if user is not logged in
-  } */
+  } 
 ?>
 <!DOCTYPE html>
 <br lang="en">
@@ -92,9 +92,9 @@
             </div>
             <div class="form-content">
                 <h2>SIGNUP</h2>
-                <form method="POST" action="registerconnect.php">
+                <form method="POST" action="registerconnect.php" onsubmit="return validateForm()">
                     <div class="input-field">
-                        <input type="text" name="cust_email" required>
+                        <input type="text" name="cust_email" id="email" required>
                         <label>Enter your email</label>
                     </div>
                     <div class="input-field">
@@ -102,7 +102,7 @@
                         <label>Enter your Username</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" name="cust_pass" required>
+                        <input type="password" name="cust_pass" id="password" required>
                         <label>Create password</label>
                     </div>
                     <div class="input-field">
@@ -122,9 +122,74 @@
                     Already have an account? 
                     <a href="#" id="login-link">Login</a>
                 </div>
-            </div>
+            </div>  
         </div>
     </div>
+  <script>
+    function validateEmail(email) {
+        // Regular expression for basic email validation
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    function validatePassword(password) {
+        // Minimum password length (NIST recommends at least 8 characters)
+        var minLength = 8;
+        // Maximum password length (NIST recommends no more than 64 characters)
+        var maxLength = 64;
+        // Regular expressions for character types
+        var uppercaseRegex = /[A-Z]/;
+        var lowercaseRegex = /[a-z]/;
+        var digitRegex = /\d/;
+        var specialCharRegex = /[!@#$%^&*()_+[\]{};':"\\|,.<>/?]/;
+
+        // Check if password meets length requirements
+        if (password.length < minLength || password.length > maxLength) {
+            return false;
+        }
+        // Check if password contains at least one uppercase letter
+        if (!uppercaseRegex.test(password)) {
+            return false;
+        }
+        // Check if password contains at least one lowercase letter
+        if (!lowercaseRegex.test(password)) {
+            return false;
+        }
+        // Check if password contains at least one digit
+        if (!digitRegex.test(password)) {
+            return false;
+        }
+        // Check if password contains at least one special character
+        if (!specialCharRegex.test(password)) {
+            return false;
+        }
+        // Password meets all requirements
+        return true;
+    }
+
+    function validateForm() {
+        var emailInput = document.getElementById("email");
+        var email = emailInput.value.trim();
+        var passwordInput = document.getElementById("password");
+        var password = passwordInput.value.trim();
+
+        // Check if the email is valid
+        if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            emailInput.focus();
+            return false;
+        }
+
+        // Check if the password is valid based on NIST standards
+        if (!validatePassword(password)) {
+            alert("Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.");
+            passwordInput.focus();
+            return false;
+        }
+
+        return true;
+    }
+</script>
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <div>
