@@ -1,11 +1,18 @@
 <?php
-$adminbookconn = mysqli_connect("localhost","root","","booking");
+    session_start();
+$adminbookconn = mysqli_connect("localhost","root","","sienas_events_place");
  
 // Check connection
 if (mysqli_connect_errno())
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
+
+  if(isset($_SESSION['ad_uname'])) {
+    $username = $_SESSION['ad_uname'];
+} else {
+    $username = ''; // Set username to empty if user is not logged in
+} 
 ?>
 <!DOCTYPE html>
 <br lang="en">
@@ -17,13 +24,14 @@ if (mysqli_connect_errno())
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="Style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet"/>
     <script src="script.js" defer></script>
 
     <style>
    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-* {
+   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -44,6 +52,16 @@ header {
     z-index: 10;
     padding: 0 10px;
     margin-top: 20px;
+}
+
+h2{
+    width: 100%;
+    color: #fff;
+    max-width: 3000px;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h4{
@@ -875,17 +893,29 @@ form button:hover {
 </head>
 <br>
 
-    <header>
+<header>
         <nav class="navbar">
             <span class="hamburger-btn material-symbols-rounded">menu</span>
             <a class="logo">
                 <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
-                
             </a>
+
+            <?php if(!empty($username)) { ?>
+              <h2>Welcome! <?php echo $username; ?></h2>
+              <ul class="links">
+                  <span class="close-btn material-symbols-rounded">close</span>
+                  <!-- <li><a href="content.php">Home</a></li>
+                  <li><a href="booking.php"><span class="home">Booking</span></a></li> -->
+                  <a href="logout.php" class="logout-btn">LOG OUT</a>
+              </ul>
+          <?php } else { ?>
             <ul class="links">
-                <span class="close-btn material-symbols-rounded">close</span>
-                <button class="login-btn">LOG IN</button>
-            </ul>
+                  <span class="close-btn material-symbols-rounded">close</span>
+                  <!-- <li><a href="content.php">Home</a></li>
+                  <li><a href="booking.php"><span class="home">Booking</span></a></li> -->
+                  <button class="login-btn">LOGIN</button>
+              </ul>
+          <?php } ?>
         </nav>    
     </header>
 

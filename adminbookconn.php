@@ -1,5 +1,5 @@
 <?php
-$adminbookconn = mysqli_connect("localhost","root","","booking");
+$adminbookconn = mysqli_connect("localhost","root","","sienas_events_place");
 
 // Check connection
 if (mysqli_connect_errno())
