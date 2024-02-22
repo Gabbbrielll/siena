@@ -1,5 +1,5 @@
 <?php
-     session_start();
+    session_start();
     $conn = new  mysqli("localhost", "root", "", "sienas_events_place");
 
     if(isset($_SESSION['cust_uname'])) {
