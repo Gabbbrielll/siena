@@ -695,27 +695,27 @@ form button:hover {
 
   @keyframes animate {
     0% {
-        background-image: url(1.png);
+        background-image: url(GardenPic.png);
     }
 
     20% {
-        background-image: url(3.png);
+        background-image: url(GardenInfo.png);
     }
 
     40% {
-        background-image: url(events.jpg);
+        background-image: url(JoaqPic.png);
     }
 
     60% {
-        background-image: url(logo.jpg);
+        background-image: url(JoaqInfo.png);
     }
 
     80% {
-        background-image: url(rica.png);
+        background-image: url(RicaPic.png);
     }
 
     100% {
-        background-image: url(sienalogo.png);
+        background-image: url(RicaInfo.png);
     }
 }
   

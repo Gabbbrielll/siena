@@ -41,15 +41,15 @@
               <h2>Welcome! <?php echo $username; ?></h2>
               <ul class="links">
                   <span class="close-btn material-symbols-rounded">close</span>
-                  <li><a href="content.php">Home</a></li>
-                  <li><a href="booking.php"><span class="home">Booking</span></a></li>
+                  <li><a href="content.php"><span class="home">Home</span></a></li>
+                  <li><a href="booking.php">Booking</a></li>
                   <a href="logout.php" class="logout-btn">LOG OUT</a>
               </ul>
           <?php } else { ?>
             <ul class="links">
                   <span class="close-btn material-symbols-rounded">close</span>
-                  <li><a href="content.php">Home</a></li>
-                  <li><a href="booking.php"><span class="home">Booking</span></a></li>
+                  <li><a href="content.php"><span class="home">Home</span></a></li>
+                  <li><a href="booking.php">Booking</a></li>
                   <button class="login-btn">LOG IN</button>
               </ul>
           <?php } ?>
@@ -196,13 +196,8 @@
         <section class="main swiper mySwiper">
             <div class="wrapper swiper-wrapper">
               <div class="slide swiper-slide">
-                <img src="sienalogo.png" alt="" class="image" />
+                <img src="start.png" alt="" class="image" />
                 <div class="image-data">
-                  <h2>
-                    Your event's one stop shop
-                  </h2>
-                  <span class="text"> Know your events venue. </span>
-                </br>
                 </div>
               </div>
           </section>
@@ -216,7 +211,7 @@
         <section class="main swiper mySwiper">
             <div class="wrapper swiper-wrapper">
               <div class="slide swiper-slide">
-                <img src="1.png" alt="" class="image" />
+                <img src="joaquin.png" alt="" class="image" />
                 <div class="image-data">
                   <h2>
                     Joaquin's Hall
@@ -238,7 +233,7 @@
                 </div>
               </div>
               <div class="slide swiper-slide">
-                <img src="3.png" alt="" class="image" />
+                <img src="garden.png" alt="" class="image" />
                 <div class="image-data">
                   <h2>
                     The Garden
