@@ -171,14 +171,14 @@ h4{
 
 .login .form-details {
     padding: 0 40px;
-    background: url("1.png");
+    background: url("start.png");
     background-position: center;
     background-size: cover;
 }
 
 .signup .form-details {
     padding: 0 20px;
-    background: url("1.png");
+    background: url("start.png");
     background-position: center;
     background-size: cover;
 }
