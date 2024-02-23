@@ -33,7 +33,7 @@
 <header>
         <nav class="navbar">
             <span class="hamburger-btn material-symbols-rounded">menu</span>
-            <a class="logo">
+            <a class="logo" href="content.php">
                 <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
             </a>
 
@@ -71,7 +71,7 @@
                 <form method="POST" action="loginconnect.php">
                     <div class="input-field">
                         <input type="text" name="cust_email" required>
-                        <label>Email</label>
+                        <label>Email/Username</label>
                     </div>
                     <div class="input-field">
                         <input type="password" name="cust_pass" required>
