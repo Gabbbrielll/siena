@@ -210,7 +210,7 @@
         <section class="main swiper mySwiper">
             <div class="wrapper swiper-wrapper">
               <div class="slide swiper-slide">
-                <img src="1.png" alt="" class="image" />
+                <img src="joaquin.png" alt="" class="image" />
                 <div class="image-data">
                   <h2>
                     Joaquin's Hall
@@ -232,7 +232,7 @@
                 </div>
               </div>
               <div class="slide swiper-slide">
-                <img src="3.png" alt="" class="image" />
+                <img src="garden.png" alt="" class="image" />
                 <div class="image-data">
                   <h2>
                     The Garden
