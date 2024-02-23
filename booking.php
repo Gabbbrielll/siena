@@ -1,5 +1,5 @@
 <?php
-    session_start();
+     session_start();
     $conn = new  mysqli("localhost", "root", "", "sienas_events_place");
 
     if(isset($_SESSION['cust_uname'])) {
@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siena's Events Place</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Style.css">
     <link rel="stylesheet" href="swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet"/>
@@ -33,7 +33,7 @@
 <header>
         <nav class="navbar">
             <span class="hamburger-btn material-symbols-rounded">menu</span>
-            <a class="logo" href="content.php">
+            <a class="logo">
                 <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
             </a>
 
@@ -71,7 +71,7 @@
                 <form method="POST" action="loginconnect.php">
                     <div class="input-field">
                         <input type="text" name="cust_email" required>
-                        <label>Email/Username</label>
+                        <label>Email</label>
                     </div>
                     <div class="input-field">
                         <input type="password" name="cust_pass" required>

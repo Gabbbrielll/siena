@@ -33,7 +33,7 @@
     <header>
         <nav class="navbar">
             <span class="hamburger-btn material-symbols-rounded">menu</span>
-            <a class="logo" href="content.php">
+            <a class="logo">
                 <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
             </a>
 
@@ -41,15 +41,15 @@
               <h2>Welcome! <?php echo $username; ?></h2>
               <ul class="links">
                   <span class="close-btn material-symbols-rounded">close</span>
-                  <li><a href="content.php"><span class="home">Home</span></a></li>
-                  <li><a href="booking.php">Booking</a></li>
+                  <li><a href="content.php">Home</a></li>
+                  <li><a href="booking.php"><span class="home">Booking</span></a></li>
                   <a href="logout.php" class="logout-btn">LOG OUT</a>
               </ul>
           <?php } else { ?>
             <ul class="links">
                   <span class="close-btn material-symbols-rounded">close</span>
-                  <li><a href="content.php"><span class="home">Home</span></a></li>
-                  <li><a href="booking.php">Booking</a></li>
+                  <li><a href="content.php">Home</a></li>
+                  <li><a href="booking.php"><span class="home">Booking</span></a></li>
                   <button class="login-btn">LOG IN</button>
               </ul>
           <?php } ?>
@@ -70,7 +70,7 @@
                 <form method="POST" action="loginconnect.php">
                     <div class="input-field">
                         <input type="text" name="cust_email" required>
-                        <label>Email/Username</label>
+                        <label>Email</label>
                     </div>
                     <div class="input-field">
                         <input type="password" name="cust_pass" required>
@@ -196,8 +196,13 @@
         <section class="main swiper mySwiper">
             <div class="wrapper swiper-wrapper">
               <div class="slide swiper-slide">
-                <img src="start.png" alt="" class="image" />
+                <img src="sienalogo.png" alt="" class="image" />
                 <div class="image-data">
+                  <h2>
+                    Your event's one stop shop
+                  </h2>
+                  <span class="text"> Know your events venue. </span>
+                </br>
                 </div>
               </div>
           </section>
@@ -205,13 +210,39 @@
 
     </br></br>
 
+    <section class="container py-5" id="skills">
+      <div class="row mt-4 py-3">
+        <div class="col-12 d-flex flex-column text-center justify-content-center">
+          <h2>Venues</h2>
+          <h5 class="text-secondary fw-normal py-2 fst-italic">These are the only venues that can be booked in Siena's Events Place.</h5>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-between mx-0">
+        <div class="card mt-5 d-flex flex-column align-items-center text-center bg-white p-4" style="width: 25rem">
+          <i class="text-white bg-primary d-flex align-items-center justify-content-center fs-2 rounded-circle fa-solid fa-cart-shopping"></i>
+          <h3 class="mt-4 h4">The Garden</h3>
+          <p class="text-center"> Halaman </p>
+        </div>
+        <div class="card mt-5 d-flex flex-column align-items-center text-center bg-white p-4" style="width: 25rem">
+          <i class="text-white bg-primary d-flex align-items-center justify-content-center fs-2 rounded-circle fa-solid fa-laptop"></i>
+          <h3 class="mt-4 h4">Rica's Hall</h3>
+          <p class="text-center"> Malaki</p>
+        </div>
+        <div class="card mt-5 d-flex flex-column align-items-center text-center bg-white p-4" style="width: 25rem">
+          <i class="text-white bg-primary d-flex align-items-center justify-content-center fs-2 rounded-circle fa-solid fa-mobile-screen-button"></i>
+          <h3 class="mt-4 h4">Joaquin's Hall</h3>
+          <p class="text-center"> Parang Ricas hall</p>
+        </div>
+      </div>
+    </section>
+
     </br></br>
 
     <div>
         <section class="main swiper mySwiper">
             <div class="wrapper swiper-wrapper">
               <div class="slide swiper-slide">
-                <img src="joaquin.png" alt="" class="image" />
+                <img src="1.png" alt="" class="image" />
                 <div class="image-data">
                   <h2>
                     Joaquin's Hall
@@ -233,7 +264,7 @@
                 </div>
               </div>
               <div class="slide swiper-slide">
-                <img src="garden.png" alt="" class="image" />
+                <img src="3.png" alt="" class="image" />
                 <div class="image-data">
                   <h2>
                     The Garden

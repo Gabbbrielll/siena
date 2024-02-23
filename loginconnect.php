@@ -16,30 +16,32 @@
 
     if (isset($_POST['login'])) {
         $user = prepareInput($_POST['cust_email']);
-        $pass = md5(prepareInput($_POST['cust_pass']));//kailangan naka md5 sa customer; no md5 sa admin
-
+        $pass_input = prepareInput($_POST['cust_pass']); // Plain text password input from user
+        $pass_md5 = md5($pass_input); // MD5 encryption of the password input
+    
         ///////////////////////////////////////////////////
         // Check if the user is an admin
-        $admin_query = "SELECT * FROM admin WHERE ad_email = '$user' AND ad_pass = '$pass';";
+        $admin_query = "SELECT * FROM admin WHERE ad_email = '$user' AND ad_pass = '$pass_input';";
         $admin_result = $conn->query($admin_query);
-
-        if($admin_result->num_rows > 0) {
+    
+        if ($admin_result->num_rows > 0) {
             $row = $admin_result->fetch_assoc();
             $_SESSION['ad_uname'] = $row['ad_uname'];
-            echo "<script>window.location.href = 'booking.php';</script>";
+            echo "<script>window.location.href = 'admin-booking.php';</script>";
             exit();
         }
-
+    
         // Check if the user is a customer
-        $customer_query = "SELECT * FROM customer WHERE cust_email='$user' AND cust_pass='$pass';";
+        $customer_query = "SELECT * FROM customer WHERE cust_email='$user' AND cust_pass='$pass_md5';";
         $customer_result = $conn->query($customer_query);
-
-        if($customer_result->num_rows > 0) {
+    
+        if ($customer_result->num_rows > 0) {
             $row = $customer_result->fetch_assoc();
             $_SESSION['cust_uname'] = $row['cust_uname'];
             echo "<script>window.location.href = 'content.php';</script>";
             exit();
         }
+    
         //////////////////////////////////////////////////
 
         // $sql = "SELECT * FROM customer WHERE cust_email='$user' AND cust_pass='$pass';";
