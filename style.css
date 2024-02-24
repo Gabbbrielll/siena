@@ -225,6 +225,22 @@ form .input-field {
     transition: 0.2s ease;
 }
 
+.input-field.code-field {
+  width: calc(100% - 5px); /* Adjust the width as needed */
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.get-code-btn {
+  width: calc(40% - 5px); /* Adjust the width as needed */
+  margin-left: 10px; /* Adjust margin as needed */
+}
+
+.input-field.code-field input {
+  flex: 1;
+}
+
 .input-field input:is(:focus, :valid) {
     padding: 16px 15px 0;
 }
