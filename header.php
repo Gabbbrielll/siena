@@ -12,14 +12,14 @@
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="content.php"><span class="home">Home</span></a></li>
-                <li><a href="booking.php">Booking</a></li>
+                <li><a href="booking.php"><span class="booking">Booking</span></a></li>
                 <a href="logout.php" class="logout-btn">LOG OUT</a>
             </ul>
         <?php } else { ?>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="content.php"><span class="home">Home</span></a></li>
-                <li><a href="booking.php">Booking</a></li>
+                <li><a href="booking.php"><span class="booking">Booking</span></a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
         <?php } ?>

@@ -17,14 +17,14 @@ if (isset($_SESSION['cust_uname'])) {
   <title>Siena's Events Place</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Style.css">
   <link rel="stylesheet" href="swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
   <script src="Script.js" defer></script>
 
   <style>
-    .home {
+    .booking {
       text-decoration: underline;
     }
   </style>
