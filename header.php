@@ -46,7 +46,7 @@
                     <input type="password" name="cust_pass" required>
                     <label>Password</label>
                 </div>
-                <a href="#" class="forgot-pass-link">Forgot password?</a>
+                <a href="forgot_password.php" class="forgot-pass-link">Forgot password?</a> <!-- Added forgot password link -->
                 <button type="submit" name="login">Log In</button>
             </form>
             <div class="bottom-link">
@@ -117,7 +117,7 @@ function getCode() {
                 if (xhr.status === 200) {
                     verificationCode = xhr.responseText.trim();; // Store the verification code received from the server
                     codeReceived = true; // Set the flag to true
-                    alert("Verification code sent to your email."); // Alert the user
+                    alert("Verification code sent to your email." + verificationCode); // Alert the user
                 } else {
                     alert("Failed to send verification code. Please try again later.");
                 }
