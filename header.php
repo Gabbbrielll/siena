@@ -89,7 +89,7 @@
                     <input type="checkbox" id="policy" required name="checkbox" value="check" id="agree">
                     <label for="policy">
                         I agree the
-                        <a href="#" class="option">Terms & Conditions</a>
+                        <a href="terms.php" class="option">Terms & Conditions</a>
                     </label>
                 </div>
                 <button type="submit" name="register">Sign Up</button>
