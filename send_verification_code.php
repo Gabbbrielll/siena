@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Port = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
         //Recipients
-        $mail->setFrom('sienaseventsplace@gmail.com', 'Sienas Events Place');
+        $mail->setFrom('noreply@sienasep.com', 'Siena\'s Events Place');
         $mail->addAddress($to_email);                               // Add a recipient
 
         // Content
@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Body = $message;
 
         $mail->send();
+        echo $verificationCode;
     } catch (Exception $e) {
         echo "Failed to send verification code. Error: {$mail->ErrorInfo}";
     }

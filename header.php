@@ -73,17 +73,17 @@
                     <label>Enter your Username</label>
                 </div>
                 <div class="input-field">
-                    <input type="password" name="cust_pass" id="password" required>
+                    <input type="password" name="cust_pass" id="password" autocomplete="off" required>
                     <label>Create password</label>
                 </div>
                 <div class="input-field">
-                    <input type="password" name="confirmPassword" required>
+                    <input type="password" name="confirmPassword" autocomplete="off" required>
                     <label>Confirm password</label>
                 </div>
                 <div class="input-field code-field">
-                    <input type="text" id="verification_code" required>
+                    <input type="text" id="verification_code" autocomplete="off" required>
                     <label>Enter Code</label>
-                    <button type="button" onclick="getCode()" class="get-code-btn">Get Code</button>
+                    <button type="button" onclick="getCode(this)" class="get-code-btn">Get Code</button>
                 </div>
                 <div class="policy-text">
                     <input type="checkbox" id="policy" required name="checkbox" value="check" id="agree">
@@ -104,6 +104,7 @@
 
 <script>
 var verificationCode; // Declare a global variable to store the verification code
+var codeReceived = false; // Track whether a verification code has been received
 
 function getCode() {
     var email = document.getElementById("email").value;
@@ -114,7 +115,8 @@ function getCode() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
-                    verificationCode = xhr.responseText; // Store the verification code received from the server
+                    verificationCode = xhr.responseText.trim();; // Store the verification code received from the server
+                    codeReceived = true; // Set the flag to true
                     alert("Verification code sent to your email."); // Alert the user
                 } else {
                     alert("Failed to send verification code. Please try again later.");
@@ -128,11 +130,16 @@ function getCode() {
 }
 
 function verifyCode() {
-    var enteredCode = document.getElementById("verification_code");
-    if (enteredCode.trim() === verificationCode) {
-        return true; // Proceed with signup
+    var enteredCode = document.getElementById("verification_code").value.trim();
+    if (codeReceived) { // Check if a verification code has been received
+        if (enteredCode === verificationCode) {
+            return true; // Proceed with signup
+        } else {
+            alert("Incorrect verification code. Please try again.");
+            return false; // Prevent form submission
+        }
     } else {
-        alert("Incorrect verification code. Please try again.");
+        alert("Please request a verification code first.");
         return false; // Prevent form submission
     }
 }
