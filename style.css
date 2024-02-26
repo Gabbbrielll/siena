@@ -771,13 +771,13 @@ form button:hover {
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
   }
   
-  /* drop down
+  
   .booking__container form {
     width: 100%;
     flex: 1;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 2rem;
   }
   
   .booking__container .input__group {
@@ -807,10 +807,17 @@ form button:hover {
     border-bottom: 1px solid var(--primary-color);
     color: var(--text-dark);
   }
+
+  .under {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid var(--primary-color);
+    color: var(--text-dark);
   
-  .booking__container input:focus ~ label {
-    font-size: 0.8rem;
-    top: 0;
   }
   
   .booking__container .form__group p {
@@ -818,8 +825,6 @@ form button:hover {
     font-size: 0.8rem;
     color: var(--text-light);
   }
-  */
-
   
   .booking__container .btn {
     padding: 1rem;
@@ -835,10 +840,12 @@ form button:hover {
     transition: 0.3s;
   }
 
+/*
+  
   .dropdown{
     min-width: 13em;
     position: relative;
-    
+    margin: 2em;
     width: 50%;
   }
 
@@ -853,7 +860,7 @@ form button:hover {
     justify-content: space-between;
     align-items: center;
     border: 2px #f1d6a5 solid;
-    border-radius: 1.5rem;
+    border-radius: 0.5rem;
     padding: 1em;
     cursor: pointer;
     transition: background 0.3s;
@@ -921,6 +928,8 @@ form button:hover {
     display: block;
     opacity: 1;
   }
+  
+  
   
   
   

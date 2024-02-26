@@ -10,6 +10,7 @@ if (mysqli_connect_errno())
 
   if(isset($_SESSION['ad_uname'])) {
     $username = $_SESSION['ad_uname'];
+    
 } else {
     $username = ''; // Set username to empty if user is not logged in
 } 
@@ -24,7 +25,7 @@ if (mysqli_connect_errno())
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet"/>
     <script src="script.js" defer></script>
 

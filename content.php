@@ -35,7 +35,7 @@ if (isset($_SESSION['cust_uname'])) {
 
 
 <?php include 'header.php'; ?>
-
+<body>
 
 <div>
   <section class="main swiper mySwiper">

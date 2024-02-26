@@ -6,7 +6,7 @@
         </a>
 
         <?php if (!empty($username)) { ?>
-            <h2>Welcome!
+            <h2 style='color: #fff; font-weight: bold; margin-right:500px;' >Welcome!
                 <?php echo $username; ?>
             </h2>
             <ul class="links">
