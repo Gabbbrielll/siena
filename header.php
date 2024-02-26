@@ -6,7 +6,7 @@
         </a>
 
         <?php if (!empty($username)) { ?>
-            <h2>Welcome!
+            <h2 style='color: #fff; font-weight: bold; margin-right:500px;' >Welcome!
                 <?php echo $username; ?>
             </h2>
             <ul class="links">
@@ -106,6 +106,7 @@
 var verificationCode; // Declare a global variable to store the verification code
 var codeReceived = false; // Track whether a verification code has been received
 
+/*
 function getCode() {
     var email = document.getElementById("email").value;
     if (email.trim() !== "") {
@@ -128,11 +129,25 @@ function getCode() {
         alert("Please enter your email address.");
     }
 }
+*/
+function getCode() {
+        // Generate a random 6-digit number
+        var min = 100000; // Minimum value for a 6-digit number
+        var max = 999999; // Maximum value for a 6-digit number
+        var verificationCode = Math.floor(Math.random() * (max - min + 1)) + min;
+        // You can store the verification code in a variable for later use if needed
+        verificationCode = verificationCode;
+        codeReceived = true;
+        // Use the generated verification code
+        alert("Verification code generated: " + verificationCode);
+        
+        
+}
 
 function verifyCode() {
     var enteredCode = document.getElementById("verification_code").value.trim();
     if (codeReceived) { // Check if a verification code has been received
-        if (enteredCode === verificationCode) {
+        if (enteredCode === verificationCode.toString()) {
             return true; // Proceed with signup
         } else {
             alert("Incorrect verification code. Please try again.");
