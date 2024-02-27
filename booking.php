@@ -79,14 +79,14 @@ if (isset($_SESSION['cust_uname'])) {
 
             <div class="form__group">
               <div class="input__group">
-                <input type="Date">
+                <input type="date" value="date">
               </div>
               <p>Date</p>
             </div>
 
             <div class="form__group">
               <div class="input__group">
-                <input type="Time">
+                <input type="time" value="time">
               </div>
               <p>Time</p>
             </div>
