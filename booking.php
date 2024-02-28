@@ -36,6 +36,7 @@ if (isset($_SESSION['cust_uname'])) {
 </head>
 
 <?php include 'header.php'; ?>
+
 <br>
 
 <body>
@@ -89,7 +90,7 @@ if (isset($_SESSION['cust_uname'])) {
                 <input type="time" id="expected-time" name="expected-time" value="00:00" >
               </div>
               <p>Time</p>
-            </div>
+        </div>
             
           </form>
           
@@ -101,7 +102,7 @@ if (isset($_SESSION['cust_uname'])) {
   </div>
 </div>
 
-</br> </br></br> </br></br> </br>
+</br> 
 
 <?php include 'footer.php'; ?>
 

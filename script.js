@@ -30,7 +30,7 @@ signupLoginLink.forEach(link => {
     });
 });
 
-
+/*
 const dropdowns = document.querySelectorAll('.dropdown');
 
 dropdowns.forEach(dropdown => {
@@ -60,3 +60,4 @@ dropdowns.forEach(dropdown => {
     });
 });
 });
+
