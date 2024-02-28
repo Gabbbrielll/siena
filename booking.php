@@ -86,16 +86,9 @@ if (isset($_SESSION['cust_uname'])) {
 
             <div class="form__group">
               <div class="input__group">
-                <input type="time" id="expected-time" name="expected-time" value="-00:00" >
+                <input type="time" id="expected-time" name="expected-time" value="00:00" >
               </div>
-              <p>Time in</p>
-            </div>
-
-            <div class="form__group">
-              <div class="input__group">
-                <input type="time" id="expected-time" name="expected-time" value="00:00">
-              </div>
-              <p>Time out</p>
+              <p>Time</p>
             </div>
             
           </form>
