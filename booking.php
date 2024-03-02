@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 $conn = new mysqli("localhost", "root", "", "sienas_events_place");
@@ -23,7 +22,7 @@ if (isset($_SESSION['cust_uname'])) {
   <link rel="stylesheet" href="swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 
   <style>
     .booking {

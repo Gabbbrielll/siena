@@ -4,7 +4,6 @@ $conn = new mysqli("localhost", "root", "", "sienas_events_place");
 
 if (isset($_SESSION['cust_uname'])) {
   $username = $_SESSION['cust_uname'];
-  /* echo "<p style='color: #f1d6a5; font-weight: bold;'>Welcome, $username!</p>"; */
 } else {
   $username = ''; // Set username to empty if user is not logged in
 }

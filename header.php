@@ -106,7 +106,6 @@
 var verificationCode; // Declare a global variable to store the verification code
 var codeReceived = false; // Track whether a verification code has been received
 
-/*
 function getCode() {
     var email = document.getElementById("email").value;
     if (email.trim() !== "") {
@@ -118,7 +117,7 @@ function getCode() {
                 if (xhr.status === 200) {
                     verificationCode = xhr.responseText.trim();; // Store the verification code received from the server
                     codeReceived = true; // Set the flag to true
-                    alert("Verification code sent to your email." + verificationCode); // Alert the user
+                    alert("Verification code sent to your email."); // Alert the user
                 } else {
                     alert("Failed to send verification code. Please try again later.");
                 }
@@ -129,7 +128,7 @@ function getCode() {
         alert("Please enter your email address.");
     }
 }
-*/
+/*
 function getCode() {
         // Generate a random 6-digit number
         var min = 100000; // Minimum value for a 6-digit number
@@ -140,14 +139,12 @@ function getCode() {
         codeReceived = true;
         // Use the generated verification code
         alert("Verification code generated: " + verificationCode);
-        
-        
 }
-
+*/
 function verifyCode() {
-    var enteredCode = document.getElementById("verification_code").value.trim();
+    var enteredCode = document.getElementById("verification_code");
     if (codeReceived) { // Check if a verification code has been received
-        if (enteredCode === verificationCode.toString()) {
+        if (enteredCode.trim() === verificationCode) {
             return true; // Proceed with signup
         } else {
             alert("Incorrect verification code. Please try again.");
@@ -158,6 +155,7 @@ function verifyCode() {
         return false; // Prevent form submission
     }
 }
+
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function validateEmail(email) {
         // Regular expression for basic email validation
