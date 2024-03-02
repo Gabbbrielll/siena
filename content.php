@@ -7,6 +7,10 @@ if (isset($_SESSION['cust_uname'])) {
 } else {
   $username = ''; // Set username to empty if user is not logged in
 }
+$message = $_GET['message'] ?? ''; // Retrieve message from query parameter
+	if (!empty($message)) {
+		echo "<script>alert('$message');</script>";
+	}
 
 ?>
 <!DOCTYPE html>

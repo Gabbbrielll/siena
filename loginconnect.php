@@ -41,6 +41,7 @@
         if ($admin_result->num_rows > 0) {
             $row = $admin_result->fetch_assoc();
             $_SESSION['ad_uname'] = $row['ad_uname'];
+            $_SESSION['is_admin'] = true;
             echo "<script>window.location.href = 'admin-booking.php';</script>";
             exit();
         }
@@ -55,6 +56,8 @@
             $cust_pass_decrypted = decryptPassword($row['cust_pass'], $row['secret_key']);
             if ($cust_pass_decrypted == $pass_input) {
                 $_SESSION['cust_uname'] = $row['cust_uname'];
+                $_SESSION['cust_id'] = $row['cust_id'];
+                $_SESSION['is_admin'] = false;
                 echo "<script>window.location.href = 'content.php';</script>";
                 exit();
             }
