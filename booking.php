@@ -18,6 +18,7 @@ if ($conn->connect_error) {
 if (isset($_SESSION['cust_uname'])) {
   $username = $_SESSION['cust_uname'];
   $cust_id = $_SESSION['cust_id'];
+  $_SESSION['is_admin'];
 } else {
   $username = ''; // Set username to empty if user is not logged in
 }
@@ -52,6 +53,52 @@ if (empty($username)) {
 
 </head>
 
+<script>
+      document.addEventListener("DOMContentLoaded", function() {
+      // Get today's date
+      var today = new Date().toISOString().split('T')[0];
+      // Set the minimum date for the date input field
+      document.getElementById("date").min = today;
+      
+      document.querySelector(".btn-check-availability").addEventListener("click", function() {
+        // Get selected date and venue
+        var date = document.getElementById("date").value;
+        var venue = document.getElementById("venue").value;
+
+        // Make AJAX request to check availability
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "checkavailability.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              // Parse JSON response
+              var response = JSON.parse(xhr.responseText);
+              // Update time slots dropdown
+              var timeSlotsDropdown = document.getElementById("time");
+              timeSlotsDropdown.innerHTML = "";
+              response.timeSlots.forEach(function(timeSlot) {
+                var option = document.createElement("option");
+                option.text = timeSlot;
+                option.value = timeSlot;
+                timeSlotsDropdown.appendChild(option);
+              });
+              // Show time slots and book button
+              document.getElementById("timeSlots").style.display = "block";
+              document.getElementById("package").style.display = "block";
+              document.querySelector(".btn-book").style.display = "block";
+            } else {
+              console.error("AJAX request failed with status: " + xhr.status);
+            }
+          }
+        };
+        // Send POST data
+        var params = "date=" + encodeURIComponent(date) + "&venue=" + encodeURIComponent(venue);
+        xhr.send(params);
+      });
+    });
+  </script>
+
 <body>
 
   <?php include 'header.php'; ?>
@@ -64,56 +111,109 @@ if (empty($username)) {
       <div class="header__content">
       </div>
       <div class="booking__container">
-        <form method="POST" action="adminbookadd.php">
+        <form method="POST" action="adminbookadd.php" id="bookingForm">
           <div class="form__group">
             <div class="input__group">
+              <input type="date" id="date" name="Date" value="" required>
+            </div>
+            <p>Date</p>
+          </div>
+
+          <div class="form__group" id="venues">
+            <div class="input__group">
               <div class="under">
-                <select id="venue" name="Venue">
+              <select id="venue" name="Venue" required>
                   <option value="">Select Venue</option>
-                  <option value="joaquin">Joaquin's Hall</option>
-                  <option value="rica">Rica's Hall</option>
-                  <option value="garden">The Garden</option>
+                  <?php
+                  // Establishing a database connection
+                  $servername = "localhost";
+                  $username = "root";
+                  $password = "";
+                  $dbname = "sienas_events_place";
+
+                  $conn = new mysqli($servername, $username, $password, $dbname);
+
+                  // Check connection
+                  if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                  }
+
+                  // Fetch venues from the database
+                  $sqlVenues = "SELECT * FROM venues";
+                  $resultVenues = $conn->query($sqlVenues);
+                  if ($resultVenues->num_rows > 0) {
+                    while ($row = $resultVenues->fetch_assoc()) {
+                      echo "<option value='" . $row['id'] . "'>" . $row['venue_name'] . "</option>";
+                    }
+                  } else {
+                    echo "<option value=''>No venues available</option>";
+                  }
+                  $conn->close();
+                  ?>
                 </select>
               </div>
             </div>
             <p>Venue</p>
           </div>
 
-          <div class="form__group">
+          <div class="form__group" id="timeSlots" style="display: none;">
             <div class="input__group">
               <div class="under">
-                <select id="package" name="Package">
-                  <option value="">Select Package</option>
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
+                <select id="time" name="Time" required>
+                  <!-- Options will be dynamically populated based on available time slots -->
                 </select>
               </div>
-            </div>
-            <p>Package</p>
-          </div>
-
-          <div class="form__group">
-            <div class="input__group">
-              <input type="date" id="date" name="Date" value="<?php echo date('m-d-Y'); ?>">
-            </div>
-            <p>Date</p>
-          </div>
-
-          <div class="form__group">
-            <div class="input__group">
-              <input type="time" id="time" name="Time" value="00:00">
             </div>
             <p>Time</p>
           </div>
 
+          <div class="form__group" id="package" style="display: none;">
+    <div class="input__group">
+        <div class="under">
+            <select id="package" name="Package" required>
+                <option value="">Select Package</option>
+                <?php
+                // Establishing a database connection
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "sienas_events_place";
+
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Fetch packages from the database
+                $sqlPackages = "SELECT * FROM packages";
+                $resultPackages = $conn->query($sqlPackages);
+                if ($resultPackages->num_rows > 0) {
+                    while ($row = $resultPackages->fetch_assoc()) {
+                        echo "<option value='" . $row['id'] . "'>" . $row['package_name'] . "</option>";
+                    }
+                } else {
+                    echo "<option value=''>No packages available</option>";
+                }
+                $conn->close();
+                ?>
+            </select>
+        </div>
+    </div>
+    <p>Package</p>
+</div>
+
+          <button type="button" class="btn btn-check-availability">
+            <p class="button">Check Availability</p>
+          </button>
+
           <input type="text" id="status" name="Status" value="to confirm" style="display:none;">
           <input type="text" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>" style="display:none;">
 
-          <button type="submit" class="btn">
+          <button type="submit" class="btn btn-book" style="display:none;">
             <p class="button">Book</p>
           </button>
-
         </form>
       </div>
     </div>
