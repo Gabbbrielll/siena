@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'vendor/autoload.php';
 $conn = new mysqli("localhost", "root", "", "sienas_events_place");
 
 // Check if the form is submitted
@@ -19,11 +23,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['validate_code']) && !
         $_SESSION['cust_email'] = $row['cust_email'];
         $_SESSION['verification_code'] = rand(100000, 999999);
         $code = $_SESSION['verification_code'];
-        
-        // Redirect the user or display a success message
-        echo "<script>alert('Verification code has been sent to $email : $code');</script>";
 
-        echo "<script>window.location.href = 'forgot_password.php';</script>";
+        // Send email with verification code
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'sienaseventsplace@gmail.com';
+            $mail->Password = 'jcvr qkqi upxh ayos';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('sienaseventsplace@gmail.com', 'Siena\'s Events Place');
+            $mail->addAddress($email);
+
+            $mail->isHTML(true);
+            $mail->Subject = "Verification Code for Password Reset";
+            $mail->Body = "Greetings $email,<br><br>"
+                . "We've received a request to reset the password for your account. Don't worry, it's easy to get back into your account.<br><br>"
+                . "To reset your password, please use the verification code below:<br><br>"
+                . "Verification Code: $code<br><br>"
+                . "Please enter this code on the provided text field to complete the verification process.<br><br>"
+                . "If you didn't request this, you can safely ignore this email. Your password won't be changed until you confirm your request using the code above.<br><br>"
+                . "If you need assistance, please don't hesitate to contact our support team.<br><br>"
+                . "Thank you for trusting us with your account. We look forward to serving you.<br><br>"
+                . "Thank you,<br>"
+                . "Siena's Events Place<br>"
+                . "315 Buliran Rd., Sitio Bayugo, Antipolo, Philippines, 1870<br>"
+                . "+631234567890";
+
+            $mail->send();
+            echo "<script>alert('Verification code has been sent to $email');</script>";
+            echo "<script>window.location.href = 'forgot_password.php';</script>";
+        } catch (Exception $e) {
+            echo "<script>alert('Failed to send verification code. Error: {$mail->ErrorInfo}');</script>";
+            echo "<script>window.location.href = 'forgot_password.php';</script>";
+        }
     } else {
         // Email not found in the database
         // You can redirect the user back to the forgot password page with an error message
@@ -55,20 +91,28 @@ if (isset($_POST['validate_code'])) {
 if (isset($_POST['reset_password'])) {
     $new_password = $_POST['new_password'];
     $confirm_password = $_POST['confirm_password'];
-    $pass_md5 = md5($new_password);
 
-        // Validate the new password
-        if (!validatePassword($new_password)) {
-            // Password does not meet requirements
-            echo "<script>alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.');</script>";
-            echo "<script>window.location.href = 'forgot_password.php';</script>";
-            exit;
-        }
+    // Validate the new password
+    if (!validatePassword($new_password)) {
+        // Password does not meet requirements
+        echo "<script>alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.');</script>";
+        echo "<script>window.location.href = 'forgot_password.php';</script>";
+        exit;
+    }
+
+    // Generate a random secret key for encryption
+    $secret_key = openssl_random_pseudo_bytes(32);
+    $secret_key_hex = bin2hex($secret_key);
+
+    // Encrypt the new password
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted_password = openssl_encrypt($new_password, 'aes-256-cbc', $secret_key_hex, 0, $iv);
+    $encrypted_password_base64 = base64_encode($iv . $encrypted_password);
 
     // Check if the new password and confirm password match
     if ($new_password == $confirm_password) {
-        // Passwords match, update the password in the database
-        $sql = "UPDATE customer SET cust_pass = '$pass_md5' WHERE cust_email = '$_SESSION[cust_email]'";
+        // Passwords match, update the encrypted password and secret key in the database
+        $sql = "UPDATE customer SET cust_pass = '$encrypted_password_base64', secret_key = '$secret_key_hex' WHERE cust_email = '$_SESSION[cust_email]'";
         mysqli_query($conn, $sql);
 
         // Redirect the user to the login page
@@ -82,6 +126,7 @@ if (isset($_POST['reset_password'])) {
         echo "<script>window.location.href = 'forgot_password.php';</script>";
     }
 }
+
 // Function to validate the password
 function validatePassword($password) {
     // Minimum password length (NIST recommends at least 8 characters)

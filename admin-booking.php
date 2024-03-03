@@ -905,15 +905,11 @@ form button:hover {
               <h2>Welcome! <?php echo $username; ?></h2>
               <ul class="links">
                   <span class="close-btn material-symbols-rounded">close</span>
-                  <!-- <li><a href="content.php">Home</a></li>
-                  <li><a href="booking.php"><span class="home">Booking</span></a></li> -->
                   <a href="logout.php" class="logout-btn">LOG OUT</a>
               </ul>
           <?php } else { ?>
             <ul class="links">
                   <span class="close-btn material-symbols-rounded">close</span>
-                  <!-- <li><a href="content.php">Home</a></li>
-                  <li><a href="booking.php"><span class="home">Booking</span></a></li> -->
                   <button class="login-btn">LOGIN</button>
               </ul>
           <?php } ?>
@@ -1001,6 +997,7 @@ form button:hover {
 	<div class="twrapper">
 		<table border="1">
 			<thead>
+        <th>Cust Name</th>
 				<th>Venue</th>
 				<th>Date</th>
         <th>Time</th>
@@ -1011,10 +1008,13 @@ form button:hover {
 			<tbody>
 				<?php
 					include('adminbookconn.php');
-					$query=mysqli_query($adminbookconn,"select * from `bookingtable`");
+					$query=mysqli_query($adminbookconn,"SELECT bookingtable.*, customer.cust_uname 
+          FROM bookingtable 
+          INNER JOIN customer ON bookingtable.cust_id = customer.cust_id");
 					while($row=mysqli_fetch_array($query)){
 						?>
 						<tr>
+              <td><?php echo $row['cust_uname']; ?></td>
 							<td><?php echo $row['Venue']; ?></td>
 							<td><?php echo $row['Date']; ?></td>
                             <td><?php echo $row['Time']; ?></td>
