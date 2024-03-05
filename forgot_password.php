@@ -15,6 +15,35 @@ if (isset($_SESSION['cust_email'])){
     <title>Forgot Password</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+
+body {
+	line-height: 1.5;
+	min-height: 100vh;
+	font-family: 'Poppins', sans-serif;
+	color: #50262f;
+	background: url("bg.jpg");
+    background-size: cover;
+	position: relative;
+}
+
+h2{
+    color: #f1d6a5;
+}
+
+button{
+    color: #f1d6a5;
+}
+
+    </style>
 </head>
 <script>
     function disableEmail() {
@@ -87,10 +116,11 @@ if (isset($_SESSION['cust_email'])){
         }
     </script>
 <body>
+    <center>
+        
     <h2>Forgot Password</h2>
-
     <form method="post" action="send_password_reset.php">
-
+        
         <label for="email">Email: <?php echo $email ?></label>
         <input type="email" name="email" id="email">
         <button type="submit" id="sendButton">Send</button>
@@ -128,6 +158,6 @@ if (isset($_SESSION['cust_email'])){
         ?>
 
     </form>
-
+    </center>
 </body>
 </html>
