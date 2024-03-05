@@ -18,8 +18,8 @@
     <div class="middle box">
       <div class="topic">More From Siena's</div>
       <div><a href="#">FAQS </a></div>
-      <div><a href="#">Terms of Service </a></div>
-      <div><a href="#">Refund Policy</a></div>
+      <div><a href="guideline.php">Client's General Guidelines </a></div>
+      <div><a href="payment.php">Payment Terms</a></div>
 
     </div>
     <div class="right box">
