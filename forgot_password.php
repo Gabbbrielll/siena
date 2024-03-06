@@ -59,61 +59,59 @@ button{
         document.getElementById("confirm_password").disabled = true;
         document.getElementById("reset_password").disabled = true;
     }
-</script>
-<script>
-        function validatePassword(newPassword) {
-            // Minimum password length (NIST recommends at least 8 characters)
-            var minLength = 8;
-            // Maximum password length (NIST recommends no more than 64 characters)
-            var maxLength = 64;
-            // Regular expressions for character types
-            var uppercaseRegex = /[A-Z]/;
-            var lowercaseRegex = /[a-z]/;
-            var digitRegex = /\d/;
-            var specialCharRegex = /[!@#$%^&*()_+[\]{};':"\\|,.<>/?]/;
+    function validatePassword(newPassword) {
+        // Minimum password length (NIST recommends at least 8 characters)
+        var minLength = 8;
+        // Maximum password length (NIST recommends no more than 64 characters)
+        var maxLength = 64;
+        // Regular expressions for character types
+        var uppercaseRegex = /[A-Z]/;
+        var lowercaseRegex = /[a-z]/;
+        var digitRegex = /\d/;
+        var specialCharRegex = /[!@#$%^&*()_+[\]{};':"\\|,.<>/?]/;
 
-            // Check if password meets length requirements
-            if (newPassword.length < minLength || newPassword.length > maxLength) {
-                return false;
-            }
-            // Check if password contains at least one uppercase letter
-            if (!uppercaseRegex.test(newPassword)) {
-                return false;
-            }
-            // Check if password contains at least one lowercase letter
-            if (!lowercaseRegex.test(newPassword)) {
-                return false;
-            }
-            // Check if password contains at least one digit
-            if (!digitRegex.test(newPassword)) {
-                return false;
-            }
-            // Check if password contains at least one special character
-            if (!specialCharRegex.test(newPassword)) {
-                return false;
-            }
-            // Password meets all requirements
-            return true;
+        // Check if password meets length requirements
+        if (newPassword.length < minLength || newPassword.length > maxLength) {
+            return false;
+        }
+        // Check if password contains at least one uppercase letter
+        if (!uppercaseRegex.test(newPassword)) {
+            return false;
+        }
+        // Check if password contains at least one lowercase letter
+        if (!lowercaseRegex.test(newPassword)) {
+            return false;
+        }
+        // Check if password contains at least one digit
+        if (!digitRegex.test(newPassword)) {
+            return false;
+        }
+        // Check if password contains at least one special character
+        if (!specialCharRegex.test(newPassword)) {
+            return false;
+        }
+        // Password meets all requirements
+        return true;
+    }
+
+    function validateForm() {
+        var newPassword = document.getElementById("new_password").value;
+        var confirmNewPassword = document.getElementById("confirm_password").value;
+
+        // Validate new password
+        if (!validatePassword(newPassword)) {
+            alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
+            return false;
         }
 
-        function validateForm() {
-            var newPassword = document.getElementById("new_password").value;
-            var confirmNewPassword = document.getElementById("confirm_password").value;
-
-            // Validate new password
-            if (!validatePassword(newPassword)) {
-                alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
-                return false;
-            }
-
-            // Confirm passwords match
-            if (newPassword !== confirmNewPassword) {
-                alert("Passwords do not match.");
-                return false;
-            }
-
-            return true;
+        // Confirm passwords match
+        if (newPassword !== confirmNewPassword) {
+            alert("Passwords do not match.");
+            return false;
         }
+
+        return true;
+    }
     </script>
 <body>
     <center>

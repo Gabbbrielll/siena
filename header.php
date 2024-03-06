@@ -108,6 +108,42 @@
 var verificationCode; // Declare a global variable to store the verification code
 var codeReceived = false; // Track whether a verification code has been received
 
+function getCode(button) {
+    var email = document.getElementById("email").value;
+    if (email.trim() !== "") {
+        button.disabled = true; // Disable the button
+        var countdown = 180; // 3 minutes in seconds
+        var interval = setInterval(function() {
+            countdown--;
+            if (countdown <= 0) {
+                clearInterval(interval);
+                button.disabled = false; // Enable the button
+                button.innerHTML = "Get Code"; // Reset button text
+            } else {
+                button.innerHTML = countdown + "s"; // Show countdown in button text
+            }
+        }, 1000);
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "send_verification_code.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    verificationCode = xhr.responseText.trim(); // Store the verification code received from the server
+                    codeReceived = true; // Set the flag to true
+                    alert("Verification code sent to your email."); // Alert the user
+                } else {
+                    alert("Failed to send verification code. Please try again later.");
+                }
+            }
+        };
+        xhr.send("email=" + encodeURIComponent(email));
+    } else {
+        alert("Please enter your email address.");
+    }
+}
+/*
 function getCode() {
     var email = document.getElementById("email").value;
     if (email.trim() !== "") {
@@ -130,7 +166,7 @@ function getCode() {
         alert("Please enter your email address.");
     }
 }
-/*
+
 function getCode() {
         // Generate a random 6-digit number
         var min = 100000; // Minimum value for a 6-digit number
