@@ -8,9 +8,9 @@
       <div class="lower">
         <div class="topic">Contact us</div>
         <div class="phone">
-          <a><i class="fas fa-phone-volume"></i>+639063758373</a>
+          <a><i class="ri-smartphone-line"></i>+639063758373</a>
           <div></div>
-          <a><i class="fas fa-phone-volume"></i>72120370</a>
+          <a><i class="ri-phone-fill"></i>72120370</a>
         </div>
         <div class="email">
           <a><i class="fas fa-envelope"></i>sienacorp.salesdepartment@gmail.com</a>
@@ -25,10 +25,7 @@
 
     </div>
     <div class="right box">
-      <div class="topic">Let's stay connected!</div>
-      <form action="#">
-        <input type="text" placeholder="Enter email address">
-        <input type="submit" name="" value="Send">
+      
         <div class="media-icons">
           <a href="https://www.facebook.com/sienaseventsplace"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.instagram.com/sienaseventsplace/"><i class="fab fa-instagram"></i></a>
