@@ -951,84 +951,23 @@ if (isset($_SESSION['ad_uname'])) {
     </a>
 
     <?php if (!empty($username)) { ?>
-      <h2>Welcome!
+      <h2 style='color: #fff; font-weight: bold; margin-right:500px;'>Welcome!
         <?php echo $username; ?>
       </h2>
       <ul class="links">
         <span class="close-btn material-symbols-rounded">close</span>
+        <li><a href="admin-booking.php"><span class="home">Manage Booking</span></a></li>
+        <li><a href="admin-content.php"><span class="booking">Manage Content</span></a></li>
         <a href="logout.php" class="logout-btn">LOG OUT</a>
       </ul>
     <?php } else { ?>
       <ul class="links">
-        <span class="close-btn material-symbols-rounded">close</span>
-        <button class="login-btn">LOGIN</button>
-      </ul>
-    <?php } ?>
+        <script>window.location.href = 'content.php';</script>";
+      <?php } ?>
   </nav>
 </header>
 
 </br>
-
-<div class="blur-bg-overlay"></div>
-<div class="form-popup">
-  <span class="close-btn material-symbols-rounded">close</span>
-  <div class="form-box login">
-    <div class="form-details">
-      <h2>Welcome Back!</h2>
-      <p>Please log in using your personal information to stay connected with us.</p>
-    </div>
-    <div class="form-content">
-      <h2>LOGIN</h2>
-      <form action="#">
-        <div class="input-field">
-          <input type="text" required>
-          <label>Email</label>
-        </div>
-        <div class="input-field">
-          <input type="password" required>
-          <label>Password</label>
-        </div>
-        <a href="#" class="forgot-pass-link">Forgot password?</a>
-        <button type="submit">Log In</button>
-      </form>
-      <div class="bottom-link">
-        Don't have an account?
-        <a href="#" id="signup-link">Signup</a>
-      </div>
-    </div>
-  </div>
-  <div class="form-box signup">
-    <div class="form-details">
-      <h2>Create Account</h2>
-      <p>To become a part of our community, please sign up using your personal information.</p>
-    </div>
-    <div class="form-content">
-      <h2>SIGNUP</h2>
-      <form action="#">
-        <div class="input-field">
-          <input type="text" required>
-          <label>Enter your email</label>
-        </div>
-        <div class="input-field">
-          <input type="password" required>
-          <label>Create password</label>
-        </div>
-        <div class="policy-text">
-          <input type="checkbox" id="policy">
-          <label for="policy">
-            I agree the
-            <a href="#" class="option">Terms & Conditions</a>
-          </label>
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
-      <div class="bottom-link">
-        Already have an account?
-        <a href="#" id="login-link">Login</a>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- --------NEW---jan 28------>
 <div class="before-admin-bg">
   <div class="admin-bg">
@@ -1102,7 +1041,6 @@ if (isset($_SESSION['ad_uname'])) {
 <div class="space">
 
 </div>
-<!-- --------NEW--------->
 
 </body>
 

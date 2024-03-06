@@ -32,6 +32,47 @@ if(isset($_GET['message'])) {
     .home {
       text-decoration: underline;
     }
+
+    /* new 2/24 */
+  .before-admin-bg{
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+
+  }
+  .admin-bg{
+    width: 90%;
+    height: 100%;
+    margin-top: 50px;
+    background-color: var(--extra-light);
+    margin: auto;
+    color: #000;
+  }
+  .image-section {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.image-section img {
+  width: 100%;
+  max-height: auto;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.image-section h2 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.image-section p {
+  font-size: 0.9em;
+  color: #777;
+}
   </style>
 
 </head>
@@ -101,6 +142,51 @@ if(isset($_GET['message'])) {
     <div class="swiper-pagination"></div>
   </section>
 </div>
+
+<?php
+include('contentadminconn.php');
+$query = mysqli_query($contentadminconn, "SELECT * FROM contenttable");
+
+if ($query) {
+    while ($row = mysqli_fetch_array($query)) {
+        ?>
+        <div class="before-admin-bg">
+            <div class="admin-bg">
+                <section class="image-section">
+                    <?php if (!empty($row["Image"])) { ?>
+                        <img src="<?php echo $row["Image"]; ?>" alt="Image description">
+                    <?php } ?>
+                    <h1><?php echo $row["Title"]; ?></h1>
+                    <p><?php echo $row["Capacity"]; ?></p>
+                    <br>
+                    <?php
+                    echo "<h2>Prices:</h2>";
+                    $prices = explode("|", $row["Price"]);
+                    foreach ($prices as $price) {
+                        echo "<h2>" . str_replace("\t", " - ", $price) . "</h2>";
+                    }
+                    ?>
+                    <br>
+                    <p>Inclusions and Amenities:<?php
+                    if (!empty($row["Description"])) {
+                        echo "<ul>";
+                        $bullet_points = explode(",", $row["Description"]);
+                        foreach ($bullet_points as $bullet_point) {
+                            echo "<li>$bullet_point</li>";
+                        }
+                        echo "</ul>";
+                    }
+                    ?></p>
+                </section>
+            </div>
+        </div>
+        <?php
+    }
+} else {
+    // Handle query error here
+    echo "Error executing query: " . mysqli_error($contentadminconn);
+}
+?>
 
 <script src="swiper-bundle.min.js"></script>
 <script>

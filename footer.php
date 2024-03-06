@@ -3,15 +3,17 @@
     <div class="left box">
       <div class="upper">
         <div class="topic">About us</div>
-        <p>315 Buliran Rd., Sitio Bayugo, Antipolo, Philippines, 1870</p>
+        <p>315 Buliran Rd. Sitio Bayugo, Antipolo, Philippines, 1870</p>
       </div>
       <div class="lower">
         <div class="topic">Contact us</div>
         <div class="phone">
-          <a><i class="fas fa-phone-volume"></i>+631234567890</a>
+          <a><i class="fas fa-phone-volume"></i>+639063758373</a>
+          <div></div>
+          <a><i class="fas fa-phone-volume"></i>72120370</a>
         </div>
         <div class="email">
-          <a><i class="fas fa-envelope"></i>info.sienasgathering@gmail.com</a>
+          <a><i class="fas fa-envelope"></i>sienacorp.salesdepartment@gmail.com</a>
         </div>
       </div>
     </div>

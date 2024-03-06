@@ -1,14 +1,16 @@
 <?php
-	include('adminbookconn.php');
-	$id=$_GET['id'];
+session_start();
+	include('contentadminconn.php');
+	$id=$_POST['id'];
+	$Image=$_POST['Image'];
+	$Title=$_POST['Title'];
+	$capacity = $_POST['Capacity'];
+    $price = $_POST['Price'];
+	$Desc=$_POST['Description'];
 	
-	$Venue=$_POST['Venue'];
-	$Date=$_POST['Date'];
-	$Time=$_POST['Time'];
-	$Package=$_POST['Package'];
-	$Status=$_POST['Status'];
 	
-	mysqli_query($adminbookconn,"update `bookingtable` set Venue='$Venue', Date='$Date', Time='$Time', Package='$Package', Status='$Status' where Booking_ID='$id'");
+	mysqli_query($contentadminconn,"UPDATE `contenttable` set Image='$Image', Title='$Title', Capacity='$capacity', 
+															Price='$price', Description='$Desc' where Content_ID='$id'");
 
-	header('location:admin-booking.php');
+	header('location:admin-content.php');
 ?>

@@ -839,6 +839,47 @@ form button:hover {
     cursor: pointer;
     transition: 0.3s;
   }
+
+  /* new 2/24 */
+  .before-admin-bg{
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+
+  }
+  .admin-bg{
+    width: 90%;
+    height: 100%;
+    margin-top: 50px;
+    background-color: var(--extra-light);
+    margin: auto;
+    color: #000;
+  }
+  .image-section {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.image-section img {
+  width: 100%;
+  max-height: auto;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.image-section h2 {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.image-section p {
+  font-size: 0.9em;
+  color: #777;
+}
   
 
 /*

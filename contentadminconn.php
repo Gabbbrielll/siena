@@ -1,5 +1,5 @@
 <?php
-$contentadminconn = mysqli_connect("localhost","root","","content");
+$contentadminconn = mysqli_connect("localhost","root","","sienas_events_place");
 
 // Check connection
 if (mysqli_connect_errno())
