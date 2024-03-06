@@ -157,7 +157,7 @@ a {
 	}
 
 	ol {
-		list-style: numeric;
+		list-style-type: inherit;
 	}
 
 	ul {
@@ -239,7 +239,11 @@ a {
 
     </style>
 </head>
-
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 
 <div class="modal">
 	<article class="modal-container">
@@ -274,7 +278,7 @@ a {
 		</section>
 		<footer class="modal-container-footer">
 			<button class="button is-ghost"><a href="content.php">Decline</button>
-			<button class="button is-primary"><a href="content.php">Accept</button>
+			<button class="button is-primary" onclick="goBack()">Accept</button>
 		</footer>
 	</article>
 </div>
