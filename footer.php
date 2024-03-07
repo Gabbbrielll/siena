@@ -19,7 +19,7 @@
     </div>
     <div class="middle box">
       <div class="topic">More From Siena's</div>
-      <div><a href="#">FAQS </a></div>
+      <div><a href="faq.php">FAQS </a></div>
       <div><a href="guideline.php">Client's General Guidelines </a></div>
       <div><a href="payment.php">Payment Terms</a></div>
 

@@ -26,6 +26,7 @@ body {
 	font-family: 'Poppins', sans-serif;
 	color: #50262f;
 	background: url("bg.jpg");
+	background-size: cover;
 	position: relative;
 }
 
