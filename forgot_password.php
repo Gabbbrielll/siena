@@ -43,6 +43,10 @@ button{
     color: #f1d6a5;
 }
 
+label{
+    color: #f1d6a5;
+}
+
     </style>
 </head>
 <script>
