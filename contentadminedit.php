@@ -5,6 +5,7 @@ include('contentadminconn.php');
 if(isset($_POST['submit'])) {
     $id = $_GET['id'];
     $title = $_POST['Title'];
+    $Image=$_POST['Image'];
     $capacity = $_POST['Capacity'];
     $price = $_POST['Price'];
     $description = $_POST['Description'];
@@ -133,7 +134,7 @@ $row = mysqli_fetch_array($query);
         <h2>Edit Content</h2>
         <form method="POST" enctype="multipart/form-data" action="contentadminupdate.php">
             <label for="image">Image:</label>
-            <input type="file" name="Image" id="image">
+            <input type="file" value="<?php echo htmlspecialchars($row['Image']); ?>" name="Image" id="image">
             <label for="title">Title:</label>
             <input type="text" value="<?php echo htmlspecialchars($row['Title']); ?>" name="Title" id="title">
 
