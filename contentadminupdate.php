@@ -1,13 +1,15 @@
 <?php
-	include('contentadminconn.php');
-	$id=$_GET['id'];
+session_start();
+include('contentadminconn.php');
+$id=$_POST['id'];
+$Image=$_POST['Image'];
+$Title=$_POST['Title'];
+$capacity = $_POST['Capacity'];
+$price = $_POST['Price'];
+$Desc=$_POST['Description'];
 	
-	$Image=$_POST['Image'];
-	$Title=$_POST['Title'];
-	$Desc=$_POST['Description'];
-	
-	
-	mysqli_query($contentadminconn,"update `contenttable` set Image='$Image', Title='$Title', Description='$Description' where Booking_ID='$id'");
+mysqli_query($contentadminconn,"UPDATE `contenttable` set Image='$Image', Title='$Title', Capacity='$capacity', 
+Price='$price', Description='$Desc' where Content_ID='$id'");
 
-	header('location:admin-booking.php');
+header('location:admin-content.php');
 ?>

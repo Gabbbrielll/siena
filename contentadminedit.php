@@ -1,14 +1,17 @@
 <?php
+session_start();
 include('contentadminconn.php');
 
 if(isset($_POST['submit'])) {
     $id = $_GET['id'];
     $title = $_POST['Title'];
+    $capacity = $_POST['Capacity'];
+    $price = $_POST['Price'];
     $description = $_POST['Description'];
 
     // Prepare the update statement
-    $stmt = $contentadminconn->prepare("UPDATE `contenttable` SET `Title`=?, `Description`=? WHERE `CONTENT_ID`=?");
-    $stmt->bind_param("ssi", $title, $description, $id);
+    $stmt = $contentadminconn->prepare("UPDATE `contenttable` SET `Title`=?, `Capacity`=?, `Price`=?, `Description`=? WHERE `Content_ID`=?");
+    $stmt->bind_param("ssi", $title, $capacity, $price, $description, $id);
 
     // Execute the update statement
     if($stmt->execute()) {
@@ -27,7 +30,7 @@ if(isset($_POST['submit'])) {
         $fileName = $_FILES['Image']['name'];
         $fileSize = $_FILES['Image']['size'];
         $fileType = $_FILES['Image']['type'];
-        
+
         // Define the directory where the image will be stored
         $uploadDirectory = '../SIENA-MAIN/';
 
@@ -39,11 +42,11 @@ if(isset($_POST['submit'])) {
         if(move_uploaded_file($fileTmpPath, $uploadPath)) {
             // Update database with new image path only if it's different from current image
             if($uploadPath !== $currentImage) {
-                $query = "UPDATE `contenttable` SET `Image`='$uploadPath', `Title`='$title', `Description`='$description' WHERE `CONTENT_ID`='$id'";
+                $query = "UPDATE `contenttable` SET `Image`='$uploadPath', `Title`='$title', `Capacity`='$capacity', `Price`='$price', `Description`='$description' WHERE `Content_ID`='$id'";
                 mysqli_query($contentadminconn, $query);
             } else {
                 // If the uploaded image is the same as the current one, update other fields only
-                $query = "UPDATE `contenttable` SET `Title`='$title', `Description`='$description' WHERE `CONTENT_ID`='$id'";
+                $query = "UPDATE `contenttable` SET `Title`='$title', `Capacity`='$capacity', `Price`='$price', `Description`='$description' WHERE `Content_ID`='$id'";
                 mysqli_query($contentadminconn, $query);
             }
 
@@ -55,7 +58,7 @@ if(isset($_POST['submit'])) {
         }
     } else {
         // If no new image is uploaded, update other fields only
-        $query = "UPDATE `contenttable` SET `Title`='$title', `Description`='$description' WHERE `CONTENT_ID`='$id'";
+        $query = "UPDATE `contenttable` SET `Title`='$title', `Capacity`='$capacity', `Price`='$price', `Description`='$description' WHERE `Content_ID`='$id'";
         mysqli_query($contentadminconn, $query);
 
         // Redirect after updating
@@ -126,15 +129,27 @@ $row = mysqli_fetch_array($query);
     </style>
 </head>
 <body>
-    <div class="container">
+<div class="container">
         <h2>Edit Content</h2>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" action="contentadminupdate.php">
             <label for="image">Image:</label>
             <input type="file" name="Image" id="image">
             <label for="title">Title:</label>
             <input type="text" value="<?php echo htmlspecialchars($row['Title']); ?>" name="Title" id="title">
+
+            <label for="capacity">Capacity:</label>
+            <input type="text" value="<?php echo htmlspecialchars($row['Capacity']); ?>" name="Capacity" id="capacity">
+            <p>Use pipline (|) as separator if you have 2 or more prices</p>
+            <label for="price">Price:</label>
+            <input type="text" value="<?php echo htmlspecialchars($row['Price']); ?>" name="Price" id="price">
+
+            <p>Use comma (,) as separator for each Inclusion and Amenity</p>
             <label for="description">Description:</label>
             <textarea name="Description" id="description"><?php echo htmlspecialchars($row['Description']); ?></textarea>
+
+            <input type="text" id="id" name="id" value="<?php echo $id; ?>" style="display:none;">
+
+
             <input type="submit" name="submit" value="Submit">
             <a href="admin-content.php">Back</a>
         </form>
