@@ -13,7 +13,6 @@
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="content.php"><span class="home">Home</span></a></li>
                 <li><a href="booking.php"><span class="booking">Booking</span></a></li>
-                <li><a href="#"><span class="gallery">Gallery</span></a></li>
                 <a href="logout.php" class="logout-btn">LOG OUT</a>
             </ul>
         <?php } else { ?>

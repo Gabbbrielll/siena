@@ -47,6 +47,15 @@ label{
     color: #f1d6a5;
 }
 
+input{
+    color: #f1d6a5;
+}
+
+
+
+
+
+
     </style>
 </head>
 <script>
@@ -118,14 +127,21 @@ label{
     }
     </script>
 <body>
-    <center>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    
+       
         
+        
+        
+        <center>
     <h2>Forgot Password</h2>
     <form method="post" action="send_password_reset.php">
         
         <label for="email">Email: <?php echo $email ?></label>
         <input type="email" name="email" id="email">
         <button type="submit" id="sendButton">Send</button>
+        
+        
 
         <br><br>
 
@@ -160,6 +176,7 @@ label{
         ?>
 
     </form>
+    </div>
     </center>
 </body>
 </html>
