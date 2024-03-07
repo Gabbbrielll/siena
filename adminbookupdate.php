@@ -1,6 +1,7 @@
 <?php
 	include('adminbookconn.php');
 	$id=$_GET['id'];
+	
 	$Venue=$_POST['Venue'];
 	$Date=$_POST['Date'];
 	$Time=$_POST['Time'];
@@ -9,5 +10,5 @@
 
 	mysqli_query($adminbookconn,"update `bookingtable` set Venue='$Venue', Date='$Date', Time='$Time', Package='$Package', Status='$Status' where Booking_ID='$id'");
 
-header('location:admin-booking.php');
+	header('location:admin-booking.php');
 ?>
