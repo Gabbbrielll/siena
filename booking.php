@@ -54,50 +54,56 @@ if (empty($username)) {
 </head>
 
 <script>
-      document.addEventListener("DOMContentLoaded", function() {
-      // Get today's date
-      var today = new Date().toISOString().split('T')[0];
-      // Set the minimum date for the date input field
-      document.getElementById("date").min = today;
-      
-      document.querySelector(".btn-check-availability").addEventListener("click", function() {
-        // Get selected date and venue
-        var date = document.getElementById("date").value;
-        var venue = document.getElementById("venue").value;
+  document.addEventListener("DOMContentLoaded", function() {
+    // Get today's date
+    var today = new Date().toISOString().split('T')[0];
+    // Set the minimum date for the date input field
+    document.getElementById("date").min = today;
 
-        // Make AJAX request to check availability
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "checkavailability.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              // Parse JSON response
-              var response = JSON.parse(xhr.responseText);
-              // Update time slots dropdown
-              var timeSlotsDropdown = document.getElementById("time");
-              timeSlotsDropdown.innerHTML = "";
-              response.timeSlots.forEach(function(timeSlot) {
-                var option = document.createElement("option");
-                option.text = timeSlot;
-                option.value = timeSlot;
-                timeSlotsDropdown.appendChild(option);
-              });
-              // Show time slots and book button
-              document.getElementById("timeSlots").style.display = "block";
-              document.getElementById("package").style.display = "block";
-              document.querySelector(".btn-book").style.display = "block";
-            } else {
-              console.error("AJAX request failed with status: " + xhr.status);
-            }
+    document.querySelector(".btn-check-availability").addEventListener("click", function() {
+      // Get selected date and venue
+      var date = document.getElementById("date").value;
+      var venue = document.getElementById("venue").value;
+
+      // Check if date and venue are selected
+      if (date === "" || venue === "") {
+        alert("Please select both date and venue.");
+        return; // Prevent further execution
+      }
+
+      // Make AJAX request to check availability
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "checkavailability.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            // Parse JSON response
+            var response = JSON.parse(xhr.responseText);
+            // Update time slots dropdown
+            var timeSlotsDropdown = document.getElementById("time");
+            timeSlotsDropdown.innerHTML = "";
+            response.timeSlots.forEach(function(timeSlot) {
+              var option = document.createElement("option");
+              option.text = timeSlot;
+              option.value = timeSlot;
+              timeSlotsDropdown.appendChild(option);
+            });
+            // Show time slots and book button
+            document.getElementById("timeSlots").style.display = "block";
+            document.getElementById("package").style.display = "block";
+            document.querySelector(".btn-book").style.display = "block";
+          } else {
+            console.error("AJAX request failed with status: " + xhr.status);
           }
-        };
-        // Send POST data
-        var params = "date=" + encodeURIComponent(date) + "&venue=" + encodeURIComponent(venue);
-        xhr.send(params);
-      });
+        }
+      };
+      // Send POST data
+      var params = "date=" + encodeURIComponent(date) + "&venue=" + encodeURIComponent(venue);
+      xhr.send(params);
     });
-  </script>
+  });
+</script>
 
 <body>
 
