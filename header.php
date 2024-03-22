@@ -20,7 +20,6 @@
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="content.php"><span class="home">Home</span></a></li>
                 <li><a href="booking.php"><span class="booking">Booking</span></a></li>
-                <li><a href="#"><span class="gallery">Gallery</span></a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
         <?php } ?>
@@ -179,7 +178,7 @@ function getCode() {
 }
 */
 function verifyCode() {
-    var enteredCode = document.getElementById("verification_code");
+    var enteredCode = document.getElementById("verification_code").value; // Retrieve the value of the entered verification code
     if (codeReceived) { // Check if a verification code has been received
         if (enteredCode.trim() === verificationCode) {
             return true; // Proceed with signup
