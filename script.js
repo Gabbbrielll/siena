@@ -30,6 +30,8 @@ signupLoginLink.forEach(link => {
     });
 });
 
+
+
 /*
 const dropdowns = document.querySelectorAll('.dropdown');
 

@@ -323,8 +323,7 @@ a {
 			
 		</section>
 		<footer class="modal-container-footer">
-			<button class="button is-ghost"><a href="content.php">Decline</button>
-			<button class="button is-primary"><a href="content.php">Accept</button>
+			<button class="button is-primary"><a href="content.php">Ok</button>
 		</footer>
 	</article>
 </div>

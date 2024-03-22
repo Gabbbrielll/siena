@@ -54,6 +54,7 @@ if (empty($username)) {
 </head>
 
 <script>
+  
   document.addEventListener("DOMContentLoaded", function() {
     // Get today's date
     var today = new Date().toISOString().split('T')[0];
