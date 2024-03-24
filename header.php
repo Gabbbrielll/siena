@@ -1,3 +1,24 @@
+<style>
+    .get-code-btn {
+  width: 35%; /* Adjust the width as needed */
+  margin-right: 30px;/* Adjust margin as needed */
+}
+
+.input-field.code-field {
+  width: calc(100% - 5px); /* Adjust the width as needed */
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  
+}
+
+.enter {
+      margin-left: 150px;
+    }
+
+    </style>
+
+
 <header>
     <nav class="navbar">
         <span class="hamburger-btn material-symbols-rounded">menu</span>
@@ -80,11 +101,17 @@
                     <input type="password" name="confirmPassword" autocomplete="off" required>
                     <label>Confirm password</label>
                 </div>
+
+                
                 <div class="input-field code-field">
+                <button type="button" onclick="getCode(this)" class="get-code-btn">Get Code</button>
+
                     <input type="text" id="verification_code" autocomplete="off" required>
-                    <label>Enter Code</label>
-                    <button type="button" onclick="getCode(this)" class="get-code-btn">Get Code</button>
+                    <label class="enter">Enter Code</label>
                 </div>
+                
+
+
                 <div class="policy-text">
                     <input type="checkbox" id="policy" required name="checkbox" value="check" id="agree">
                     <label for="policy">
