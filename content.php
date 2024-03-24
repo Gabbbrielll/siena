@@ -82,7 +82,7 @@ if(isset($_GET['message'])) {
 <body>
 
 <div>
-  <section class="main swiper mySwiper">
+  <section class="main swiper mySwiperr">
     <div class="wrapper swiper-wrapper">
       <div class="slide swiper-slide">
         <img src="start.png" alt="" class="image" />
@@ -143,6 +143,23 @@ if(isset($_GET['message'])) {
   </section>
 </div>
 
+<script src="swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+</br></br>
+
 <?php
 include('contentadminconn.php');
 $query = mysqli_query($contentadminconn, "SELECT * FROM contenttable");
@@ -188,22 +205,7 @@ if ($query) {
 }
 ?>
 
-<script src="swiper-bundle.min.js"></script>
-<script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-</script>
-</br></br>
+
 
 <?php include 'footer.php'; ?>
 
