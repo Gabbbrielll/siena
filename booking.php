@@ -54,7 +54,11 @@ if (empty($username)) {
 </head>
 
 <script>
-  
+  function hideButton(x)
+{
+    x.style.display = 'none';
+}
+
   document.addEventListener("DOMContentLoaded", function() {
     // Get today's date
     var today = new Date().toISOString().split('T')[0];
@@ -211,8 +215,8 @@ if (empty($username)) {
     <p>Package</p>
 </div>
 
-          <button type="button" class="btn btn-check-availability">
-            <p class="button">Check Availability</p>
+          <button type="button" class="btn btn-check-availability" onclick="hideButton(this)">
+            <p class="button" onclick="hideButton(this)">Check Availability</p>
           </button>
 
           <input type="text" id="status" name="Status" value="to confirm" style="display:none;">
