@@ -112,7 +112,7 @@ if(isset($_GET['message'])) {
         </div>
       </div>
       <div class="slide swiper-slide">
-        <img src="rica.png" alt="" class="image" />
+        <img src="rica.jpg" alt="" class="image" />
         <div class="image-data">
           <h2>
             Rica's Hall
