@@ -8,9 +8,9 @@
       <div class="lower">
         <div class="topic">Contact us</div>
         <div class="phone">
-          <a><i class="ri-smartphone-line"></i>+639063758373</a>
+          <a><i class="ri-smartphone-line"></i>+(63)906-375-8373</a>
           <div></div>
-          <a><i class="ri-phone-fill"></i>72120370</a>
+          <a><i class="ri-phone-fill"></i>(7)-212-0370</a>
         </div>
         <div class="email">
           <a><i class="fas fa-envelope"></i>sienacorp.salesdepartment@gmail.com</a>
