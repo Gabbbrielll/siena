@@ -232,6 +232,55 @@ if (empty($username)) {
 
   <br><br><br>
 
+  <div class="twrapper">
+        <table border="1">
+          <thead>
+            <th>Customer Name</th>
+            <th>Venue</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Package</th>
+            <th>Status</th>
+          </thead>
+          <tbody>
+            <?php
+            include('adminbookconn.php');
+            $query = mysqli_query($adminbookconn, "SELECT bookingtable.*, customer.cust_uname, venues.venue_name, packages.package_name
+            FROM bookingtable 
+            INNER JOIN customer ON bookingtable.cust_id = customer.cust_id
+            INNER JOIN venues ON bookingtable.Venue = venues.id
+            INNER JOIN packages ON bookingtable.Package = packages.id
+            WHERE bookingtable.cust_id = $cust_id");
+            while ($row = mysqli_fetch_array($query)) {
+              ?>
+              <tr>
+                <td>
+                  <?php echo htmlspecialchars($row['cust_uname']); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($row['venue_name']); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($row['Date']); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($row['Time']); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($row['package_name']); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($row['Status']); ?>
+                </td>
+              </tr>
+              <?php
+            }
+            ?>
+          </tbody>
+        </table>
+
+        <br>
+
   <?php include 'footer.php'; ?>
 
 </body>

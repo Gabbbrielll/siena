@@ -13,6 +13,49 @@ if (isset($_SESSION['ad_uname'])) {
 } else {
   $username = ''; // Set username to empty if user is not logged in
 }
+
+// Handle search query
+if (isset($_POST['search'])) {
+  $search_name = $_POST['search_name'];
+  $search_date = $_POST['search_date'];
+  
+  // Initialize the WHERE clause
+  $where_clause = '';
+
+  // Check if either search field is filled out
+  if (!empty($search_name) && !empty($search_date)) {
+    // If both fields are filled out, search by both name and date
+    $where_clause = "WHERE customer.cust_uname LIKE '%$search_name%' AND bookingtable.Date = '$search_date'";
+  } else if (!empty($search_name)) {
+    // If only the name field is filled out, search by name
+    $where_clause = "WHERE customer.cust_uname LIKE '%$search_name%'";
+  } else if (!empty($search_date)) {
+    // If only the date field is filled out, search by date
+    $where_clause = "WHERE bookingtable.Date = '$search_date'";
+  }
+  
+  // Perform SQL query to filter bookings based on user input
+  $query = "SELECT bookingtable.*, customer.cust_uname, venues.venue_name, packages.package_name
+            FROM bookingtable 
+            INNER JOIN customer ON bookingtable.cust_id = customer.cust_id
+            INNER JOIN venues ON bookingtable.Venue = venues.id
+            INNER JOIN packages ON bookingtable.Package = packages.id
+            $where_clause";
+
+  // Execute the SQL query
+  $result = mysqli_query($adminbookconn, $query);
+
+} else {
+  // If no search query, retrieve all bookings
+  $query = "SELECT bookingtable.*, customer.cust_uname, venues.venue_name, packages.package_name
+            FROM bookingtable 
+            INNER JOIN customer ON bookingtable.cust_id = customer.cust_id
+            INNER JOIN venues ON bookingtable.Venue = venues.id
+            INNER JOIN packages ON bookingtable.Package = packages.id";
+
+  // Execute the SQL query
+  $result = mysqli_query($adminbookconn, $query);
+}
 ?>
 <!DOCTYPE html>
 <br lang="en">
@@ -982,6 +1025,14 @@ if (isset($_SESSION['ad_uname'])) {
           <label>Status:</label><input type="text" name="Status">
           <input type="submit" name="Submit">
         </form>
+
+<!-- Search form -->
+<form method="POST" action="">
+  <input type="text" name="search_name" placeholder="Search by customer name">
+  <input type="date" name="search_date">
+  <button type="submit" name="search">Search</button>
+</form>
+        
       </div>
       <br>
       <div class="twrapper">
@@ -996,43 +1047,25 @@ if (isset($_SESSION['ad_uname'])) {
             <th></th>
           </thead>
           <tbody>
-            <?php
-            include('adminbookconn.php');
-            $query = mysqli_query($adminbookconn, "SELECT bookingtable.*, customer.cust_uname, venues.venue_name, packages.package_name
-            FROM bookingtable 
-            INNER JOIN customer ON bookingtable.cust_id = customer.cust_id
-            INNER JOIN venues ON bookingtable.Venue = venues.id
-            INNER JOIN packages ON bookingtable.Package = packages.id");
-            while ($row = mysqli_fetch_array($query)) {
-              ?>
-              <tr>
-                <td>
-                  <?php echo htmlspecialchars($row['cust_uname']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['venue_name']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['Date']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['Time']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['package_name']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['Status']); ?>
-                </td>
-                <td>
-                  <a class="btnE" href="adminbookedit.php?id=<?php echo $row['Booking_ID']; ?>">Edit</a>
-                  <a class="btnD" href="adminbookdelete.php?id=<?php echo $row['Booking_ID']; ?>">Delete</a>
-                </td>
-              </tr>
               <?php
-            }
-            ?>
-          </tbody>
+              while ($row = mysqli_fetch_array($result)) {
+              ?>
+                <tr>
+                  <td><?php echo htmlspecialchars($row['cust_uname']); ?></td>
+                  <td><?php echo htmlspecialchars($row['venue_name']); ?></td>
+                  <td><?php echo htmlspecialchars($row['Date']); ?></td>
+                  <td><?php echo htmlspecialchars($row['Time']); ?></td>
+                  <td><?php echo htmlspecialchars($row['package_name']); ?></td>
+                  <td><?php echo htmlspecialchars($row['Status']); ?></td>
+                  <td>
+                    <a class="btnE" href="adminbookedit.php?id=<?php echo $row['Booking_ID']; ?>">Edit</a>
+                    <a class="btnD" href="adminbookdelete.php?id=<?php echo $row['Booking_ID']; ?>">Delete</a>
+                  </td>
+                </tr>
+              <?php
+              }
+              ?>
+            </tbody>
         </table>
       </div>
     </div>
