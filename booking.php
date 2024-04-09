@@ -231,54 +231,43 @@ if (empty($username)) {
   </div>
 
   <br><br><br>
-
   <div class="twrapper">
-        <table border="1">
-          <thead>
-            <th>Customer Name</th>
-            <th>Venue</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Package</th>
-            <th>Status</th>
-          </thead>
-          <tbody>
-            <?php
-            include('adminbookconn.php');
-            $query = mysqli_query($adminbookconn, "SELECT bookingtable.*, customer.cust_uname, venues.venue_name, packages.package_name
-            FROM bookingtable 
-            INNER JOIN customer ON bookingtable.cust_id = customer.cust_id
-            INNER JOIN venues ON bookingtable.Venue = venues.id
-            INNER JOIN packages ON bookingtable.Package = packages.id
-            WHERE bookingtable.cust_id = $cust_id");
-            while ($row = mysqli_fetch_array($query)) {
-              ?>
-              <tr>
-                <td>
-                  <?php echo htmlspecialchars($row['cust_uname']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['venue_name']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['Date']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['Time']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['package_name']); ?>
-                </td>
-                <td>
-                  <?php echo htmlspecialchars($row['Status']); ?>
-                </td>
-              </tr>
-              <?php
-            }
-            ?>
-          </tbody>
-        </table>
-
+  <table class="table-box">
+    <thead>
+      <tr class="table-row table-head">
+        <th class="table-cell first-cell">Customer Name</th>
+        <th class="table-cell">Venue</th>
+        <th class="table-cell">Date</th>
+        <th class="table-cell">Time</th>
+        <th class="table-cell fifth-cell">Package</th>
+        <th class="table-cell last-cell">Status  </th> 
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+        include('adminbookconn.php');
+        $query = mysqli_query($adminbookconn, "SELECT bookingtable.*, customer.cust_uname, venues.venue_name, packages.package_name
+        FROM bookingtable 
+        INNER JOIN customer ON bookingtable.cust_id = customer.cust_id
+        INNER JOIN venues ON bookingtable.Venue = venues.id
+        INNER JOIN packages ON bookingtable.Package = packages.id
+        WHERE bookingtable.cust_id = $cust_id");
+        while ($row = mysqli_fetch_array($query)) {
+      ?>
+      <tr class="table-row">
+        <td class="table-cell first-cell"><?php echo htmlspecialchars($row['cust_uname']); ?></td>
+        <td class="table-cell"><?php echo htmlspecialchars($row['venue_name']); ?></td>
+        <td class="table-cell"><?php echo htmlspecialchars($row['Date']); ?></td>
+        <td class="table-cell"><?php echo htmlspecialchars($row['Time']); ?></td>
+        <td class="table-cell"><?php echo htmlspecialchars($row['package_name']); ?></td>
+        <td class="table-cell last-cell"><?php echo htmlspecialchars($row['Status']); ?></td>
+      </tr>
+      <?php
+        }
+      ?>
+    </tbody>
+  </table>
+</div>
         <br>
 
   <?php include 'footer.php'; ?>
