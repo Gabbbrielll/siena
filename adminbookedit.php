@@ -62,7 +62,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Edit Content</h2>
+        <h2>Edit Booking</h2>
         <h2>Edit</h2>
 	<form method="POST" action="adminbookupdate.php?id=<?php echo $id; ?>">
 		<label>Venue:</label><input type="text" value="<?php echo $row['Venue']; ?>" name="Venue">

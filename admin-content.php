@@ -13,6 +13,14 @@ if (isset($_SESSION['ad_uname'])) {
 } else {
   $username = ''; // Set username to empty if user is not logged in
 }
+
+$error_message = ""; // Check if there's an error message
+if (isset($_GET['error'])) {
+  $error = $_GET['error'];
+  if ($error === 'empty_fields') {
+    $error_message = "Please fill out all the required fields.";
+  }
+}
 ?>
 <!DOCTYPE html>
 <br lang="en">
@@ -974,14 +982,14 @@ if (isset($_SESSION['ad_uname'])) {
     <br>
     <div>
       <div class="contform">
-        <form method="POST" encytype="multipart/form-data" action="contentadminadd.php">
-          <label>Image: </label><input type="file" name="Image">
-          <label>Title: </label><input type="text" name="Title">
-          <label>Capacity: </label><input type="text" name="Capacity">
-          <label>Price: </label><input type="text" name="Price">
-          <label>Description: </label><input type="text" name="Description">
-          <input type="submit" name="Submit">
-        </form>
+      <form id="contentForm" method="POST" enctype="multipart/form-data" action="contentadminadd.php" onsubmit="return validateForm()">
+        <label>Image:</label><input type="file" name="Image" required>
+        <label>Title:</label><input type="text" name="Title" required>
+        <label>Capacity:</label><input type="text" name="Capacity" required>
+        <label>Price:</label><input type="text" name="Price" required>
+        <label>Description:</label><input type="text" name="Description" required>
+        <input type="submit" name="Submit">
+      </form>
       </div>
       <br>
       <div class="twrapper">
@@ -1015,7 +1023,8 @@ if (isset($_SESSION['ad_uname'])) {
                 <td>
                   <?php echo $row['Description']; ?>
                 </td>
-                <td><a class="btnE" href="contentadminedit.php?id=<?php echo $row['Content_ID']; ?>">Edit</a></td>
+                <td><a class="btnE" href="contentadminedit.php?id=<?php echo $row['Content_ID']; ?>">Edit</a>
+              </td>
                 <td>
                   <a class="btnD" href="contentadmindelete.php?id=<?php echo $row['Content_ID']; ?>">Delete</a>
                 </td>
@@ -1026,6 +1035,13 @@ if (isset($_SESSION['ad_uname'])) {
           </tbody>
         </table>
       </div>
+      <!-- Error message display -->
+       <!-- pwedeng wala na toh -->
+      <?php if (!empty($error_message)): ?>
+        <div class="error-message">
+          <?php echo $error_message; ?>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
 </div>
@@ -1033,6 +1049,22 @@ if (isset($_SESSION['ad_uname'])) {
 
 </div>
 <!-- --------NEW--------->
+<script>
+    function validateForm() {
+      var form = document.getElementById("contentForm");
+      var title = form.elements["Title"].value;
+      var capacity = form.elements["Capacity"].value;
+      var price = form.elements["Price"].value;
+      var description = form.elements["Description"].value;
+
+      // Check if any required field is empty
+      if (title.trim() === '' || capacity.trim() === '' || price.trim() === '' || description.trim() === '') {
+        alert("Please fill out all the required fields.");
+        return false; // Prevent form submission
+      }
+      return true; // Allow form submission
+    }
+  </script>
 
 </body>
 

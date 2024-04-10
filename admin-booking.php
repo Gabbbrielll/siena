@@ -1014,17 +1014,18 @@ if (isset($_POST['search'])) {
 <!-- --------NEW---jan 28------>
 <div class="before-admin-bg">
   <div class="admin-bg">
-
+    <br>
     <div>
       <div>
         <form method="POST" action="adminbookadd.php">
-          <label>Venue:</label><input type="text" name="Venue">
-          <label>Date:</label><input type="text" name="Date">
-          <label>Time:</label><input type="text" name="Time">
-          <label>Package:</label><input type="text" name="Package">
-          <label>Status:</label><input type="text" name="Status">
+          <label>Venue: </label><input type="text" name="Venue">
+          <label>Date: </label><input type="text" name="Date">
+          <label>Time: </label><input type="text" name="Time">
+          <label>Package: </label><input type="text" name="Package">
+          <label>Status: </label><input type="text" name="Status">
           <input type="submit" name="Submit">
         </form>
+        <br>
 
 <!-- Search form -->
 <form method="POST" action="">
@@ -1038,13 +1039,14 @@ if (isset($_POST['search'])) {
       <div class="twrapper">
         <table border="1">
           <thead>
-            <th>Cust Name</th>
+            <th>Customer Name</th>
             <th>Venue</th>
             <th>Date</th>
             <th>Time</th>
             <th>Package</th>
             <th>Status</th>
-            <th></th>
+            <th>Edit</th>
+            <th>Delete</th>
           </thead>
           <tbody>
               <?php
@@ -1059,8 +1061,10 @@ if (isset($_POST['search'])) {
                   <td><?php echo htmlspecialchars($row['Status']); ?></td>
                   <td>
                     <a class="btnE" href="adminbookedit.php?id=<?php echo $row['Booking_ID']; ?>">Edit</a>
+                    </td>
+                    <td>
                     <a class="btnD" href="adminbookdelete.php?id=<?php echo $row['Booking_ID']; ?>">Delete</a>
-                  </td>
+                    </td>
                 </tr>
               <?php
               }
