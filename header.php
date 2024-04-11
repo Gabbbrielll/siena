@@ -27,13 +27,18 @@
         </a>
 
         <?php if (!empty($username)) { ?>
+<<<<<<< HEAD
             <h2 style='color: #fff; font-weight: bold; margin-right:500px; white-space: nowrap;' >Welcome,
+=======
+            <h2 style='color: #fff; font-weight: bold; margin-right:500px;' > Welcome,
+>>>>>>> 11a80c456b63e9688956ac67239868ee069f172f
                 <?php echo $username; ?>!
             </h2>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="content.php"><span class="home">Home</span></a></li>
                 <li><a href="booking.php"><span class="booking">Booking</span></a></li>
+                <li><a href="packages.php"><span class="packages">Packages</span></a></li>
                 <a href="logout.php" class="logout-btn">LOG OUT</a>
             </ul>
         <?php } else { ?>
@@ -41,6 +46,7 @@
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="content.php"><span class="home">Home</span></a></li>
                 <li><a href="booking.php"><span class="booking">Booking</span></a></li>
+                <li><a href="packages.php"><span class="packages">Packages</span></a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
         <?php } ?>

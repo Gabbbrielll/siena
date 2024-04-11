@@ -13,6 +13,14 @@ if (isset($_SESSION['ad_uname'])) {
 } else {
   $username = ''; // Set username to empty if user is not logged in
 }
+
+$error_message = ""; // Check if there's an error message
+if (isset($_GET['error'])) {
+  $error = $_GET['error'];
+  if ($error === 'empty_fields') {
+    $error_message = "Please fill out all the required fields.";
+  }
+}
 ?>
 <!DOCTYPE html>
 <br lang="en">
@@ -974,14 +982,14 @@ if (isset($_SESSION['ad_uname'])) {
     <br>
     <div>
       <div class="contform">
-        <form method="POST" encytype="multipart/form-data" action="contentadminadd.php">
-          <label>Image: </label><input type="file" name="Image">
-          <label>Title: </label><input type="text" name="Title">
-          <label>Capacity: </label><input type="text" name="Capacity">
-          <label>Price: </label><input type="text" name="Price">
-          <label>Description: </label><input type="text" name="Description">
-          <input type="submit" name="Submit">
-        </form>
+      <form id="contentForm" method="POST" enctype="multipart/form-data" action="contentadminadd.php" onsubmit="return validateForm()">
+        <label>Image: </label><input type="file" name="Image" required>
+        <label>Title: </label><input type="text" name="Title" required>
+        <label>Capacity: </label><input type="text" name="Capacity" required>
+        <label>Price: </label><input type="text" name="Price" required>
+        <label>Description: </label><input type="text" name="Description" required>
+        <input type="submit" name="Submit">
+      </form>
       </div>
       <br>
       <div class="twrapper">
@@ -1002,7 +1010,7 @@ if (isset($_SESSION['ad_uname'])) {
             while ($row = mysqli_fetch_array($query)) {
               ?>
               <tr>
-                <td><img src="../SIENA-MAIN/<?php echo $row['Image']; ?>" width="auto" height="100"> </td>
+                <td><img src="../siena-main/<?php echo $row['Image']; ?>" width="auto" height="100"> </td>
                 <td>
                   <?php echo $row['Title']; ?>
                 </td>
@@ -1015,7 +1023,8 @@ if (isset($_SESSION['ad_uname'])) {
                 <td>
                   <?php echo $row['Description']; ?>
                 </td>
-                <td><a class="btnE" href="contentadminedit.php?id=<?php echo $row['Content_ID']; ?>">Edit</a></td>
+                <td><a class="btnE" href="contentadminedit.php?id=<?php echo $row['Content_ID']; ?>">Edit</a>
+              </td>
                 <td>
                   <a class="btnD" href="contentadmindelete.php?id=<?php echo $row['Content_ID']; ?>">Delete</a>
                 </td>
@@ -1025,7 +1034,74 @@ if (isset($_SESSION['ad_uname'])) {
             ?>
           </tbody>
         </table>
+        <br>
       </div>
+      
+
+    <div>
+      <br><br>
+      <div class="contform2">
+      <form id="contentForm2" method="POST" enctype="multipart/form-data" action="packageadminadd.php" onsubmit="return validatePackageForm()">
+        <label>Image: </label><input type="file" name="PackageImage" required>
+        <label>Title: </label><input type="text" name="PackageTitle" required>
+        <label>Type: </label><input type="text" name="PackageType" required>
+        <label>Price: </label><input type="text" name="PackagePrice" required>
+        <label>Description: </label><input type="text" name="PackageDescription" required>
+        <input type="submit" name="Submit">
+      </form>
+      </div>
+      <br>
+      <div class="twrapper">
+        <table border="1">
+          <thead>
+            <th>Package Image</th>
+            <th>Package Title</th>
+            <th>Package Type</th>
+            <th>Package Price</th>
+            <th>Package Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            <?php
+            include('packageadminconn.php');
+            $query = mysqli_query($packageadminconn, "select * from `packagetable`");
+            while ($row = mysqli_fetch_array($query)) {
+              ?>
+              <tr>
+                <td><img src="../siena-main/<?php echo $row['PackageImage']; ?>" width="auto" height="100"> </td>
+                <td>
+                  <?php echo $row['PackageTitle']; ?>
+                </td>
+                <td>
+                  <?php echo $row['PackageType']; ?>
+                </td>
+                <td>
+                  <?php echo $row['PackagePrice']; ?>
+                </td>
+                <td>
+                  <?php echo $row['PackageDescription']; ?>
+                </td>
+                <td><a class="btnE" href="packageadminedit.php?id=<?php echo $row['Package_ID']; ?>">Edit</a>
+              </td>
+                <td>
+                  <a class="btnD" href="packageadmindelete.php?id=<?php echo $row['Package_ID']; ?>">Delete</a>
+                </td>
+              </tr>
+              <?php
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Error message display -->
+       <!-- pwedeng wala na toh -->
+      <?php if (!empty($error_message)): ?>
+        <div class="error-message">
+          <?php echo $error_message; ?>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
 </div>
@@ -1033,6 +1109,38 @@ if (isset($_SESSION['ad_uname'])) {
 
 </div>
 <!-- --------NEW--------->
+<script>
+    function validateForm() {
+      var form = document.getElementById("contentForm");
+      var title = form.elements["Title"].value;
+      var capacity = form.elements["Capacity"].value;
+      var price = form.elements["Price"].value;
+      var description = form.elements["Description"].value;
+
+      // Check if any required field is empty
+      if (title.trim() === '' || capacity.trim() === '' || price.trim() === '' || description.trim() === '') {
+        alert("Please fill out all the required fields.");
+        return false; // Prevent form submission
+      }
+      return true; // Allow form submission
+    }
+
+    function validatePackageForm() {
+      var form = document.getElementById("contentForm2");
+      var title = form.elements["PackageTitle"].value;
+      var type = form.elements["PackageType"].value;
+      var price = form.elements["PackagePrice"].value;
+      var description = form.elements["PackageDescription"].value;
+
+      // Check if any required field is empty
+      if (title.trim() === '' || type.trim() === '' || price.trim() === '' || description.trim() === '') {
+        alert("Please fill out all the required fields.");
+        return false; // Prevent form submission
+      }
+      return true; // Allow form submission
+    }
+
+  </script>
 
 </body>
 
