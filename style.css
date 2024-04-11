@@ -713,7 +713,7 @@ form button:hover {
 
   @keyframes animate {
     0% {
-        background-image: url(GardenPic.png);
+        background-image: url(GardenPic1.png);
     }
 
     20% {
@@ -721,7 +721,7 @@ form button:hover {
     }
 
     40% {
-        background-image: url(JoaqPic.png);
+        background-image: url(JoaqPic1.png);
     }
 
     60% {
@@ -729,7 +729,7 @@ form button:hover {
     }
 
     80% {
-        background-image: url(RicaPic.png);
+        background-image: url(RicaPic1.png);
     }
 
     100% {
