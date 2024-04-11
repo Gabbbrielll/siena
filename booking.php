@@ -116,6 +116,7 @@ if (empty($username)) {
 
   <br>
   <br>
+  <br>
 
   <div class="section__container header__container">
     <div class="header__image__container">
@@ -215,8 +216,8 @@ if (empty($username)) {
     <p>Package</p>
 </div>
 
-          <button type="button" class="btn btn-check-availability" onclick="hideButton(this)">
-            <p class="button" onclick="hideButton(this)">Check Availability</p>
+          <button type="button" class="btn btn-check-availability" >
+            <p class="button" >Check Availability</p>
           </button>
 
           <input type="text" id="status" name="Status" value="to confirm" style="display:none;">

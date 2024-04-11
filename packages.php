@@ -29,7 +29,7 @@ if(isset($_GET['message'])) {
   <script src="script.js" defer></script>
 
   <style>
-    .home {
+    .packages {
       text-decoration: underline;
     }
 

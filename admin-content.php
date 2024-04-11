@@ -1010,7 +1010,7 @@ if (isset($_GET['error'])) {
             while ($row = mysqli_fetch_array($query)) {
               ?>
               <tr>
-                <td><img src="../siena/<?php echo $row['Image']; ?>" width="auto" height="100"> </td>
+                <td><img src="../siena-main/<?php echo $row['Image']; ?>" width="auto" height="100"> </td>
                 <td>
                   <?php echo $row['Title']; ?>
                 </td>
@@ -1036,8 +1036,10 @@ if (isset($_GET['error'])) {
         </table>
         <br>
       </div>
+      
 
     <div>
+      <br><br>
       <div class="contform2">
       <form id="contentForm2" method="POST" enctype="multipart/form-data" action="packageadminadd.php" onsubmit="return validatePackageForm()">
         <label>Image: </label><input type="file" name="PackageImage" required>
@@ -1049,6 +1051,7 @@ if (isset($_GET['error'])) {
       </form>
       </div>
       <br>
+      <div class="twrapper">
         <table border="1">
           <thead>
             <th>Package Image</th>
@@ -1066,7 +1069,7 @@ if (isset($_GET['error'])) {
             while ($row = mysqli_fetch_array($query)) {
               ?>
               <tr>
-                <td><img src="../siena/<?php echo $row['PackageImage']; ?>" width="auto" height="100"> </td>
+                <td><img src="../siena-main/<?php echo $row['PackageImage']; ?>" width="auto" height="100"> </td>
                 <td>
                   <?php echo $row['PackageTitle']; ?>
                 </td>

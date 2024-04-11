@@ -125,6 +125,11 @@ input{
 
         return true;
     }
+
+    function backButton() {
+            window.history.back();
+        }
+  
     </script>
 <body>
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -140,6 +145,11 @@ input{
         <label for="email">Email: <?php echo $email ?></label>
         <input type="email" name="email" id="email">
         <button type="submit" id="sendButton">Send</button>
+    
+
+        
+        
+
         
         
 
@@ -153,7 +163,8 @@ input{
             echo '<input type="text" name="verification_code" id="verification_code" required>';
             echo '<button type="submit" name="validate_code" id="validate_code">Validate Code</button>';
         }
-?>
+        ?>
+
 <br> <br>
         <?php
         // Check if the new password fields should be displayed
@@ -176,6 +187,9 @@ input{
         ?>
 
     </form>
+
+    <button type="button" id="backButton" onclick="backButton()">Back</button>
+
     </div>
     </center>
 </body>
