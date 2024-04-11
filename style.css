@@ -717,7 +717,7 @@ form button:hover {
     }
 
     20% {
-        background-image: url(GardenInfo.png);
+        background-image: url(GardenInfo4.png);
     }
 
     40% {
@@ -725,7 +725,7 @@ form button:hover {
     }
 
     60% {
-        background-image: url(JoaqInfo.png);
+        background-image: url(JoaqInfo1.png);
     }
 
     80% {
@@ -733,7 +733,7 @@ form button:hover {
     }
 
     100% {
-        background-image: url(RicaInfo.png);
+        background-image: url(RicaInfo1.png);
     }
 }
   

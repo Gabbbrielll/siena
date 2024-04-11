@@ -979,6 +979,33 @@ if (isset($_POST['search'])) {
       background-color: var(--extra-light);
     }
 
+    input[type="text"] {
+  width: 100%; /* Width of the search bar */
+  padding: 12px 20px; /* Padding inside the search bar */
+  margin: 8px 0; /* Margin above and below the search bar */
+  display: inline-block; /* Makes the search bar behave like an inline element */
+  border: 1px solid #ccc; /* Border around the search bar */
+  border-radius: 4px; /* Rounded corners of the search bar */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+input[type="text"]::placeholder { /* Style the placeholder text */
+  color: #aaa; /* Grey color for placeholder text */
+}
+
+input[type="date"] {
+  width: 100%; /* Width of the search bar */
+  padding: 12px 20px; /* Padding inside the search bar */
+  margin: 8px 0; /* Margin above and below the search bar */
+  display: inline-block; /* Makes the search bar behave like an inline element */
+  border: 1px solid #ccc; /* Border around the search bar */
+  border-radius: 4px; /* Rounded corners of the search bar */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+input[type="date"]::placeholder { /* Style the placeholder text */
+  color: #aaa; /* Grey color for placeholder text */
+}
 
 
     /* -------NEW----1/28----- LOCAL*/
@@ -988,13 +1015,13 @@ if (isset($_POST['search'])) {
 
 <header>
   <nav class="navbar">
-    <span class="hamburger-btn material-symbols-rounded">menu</span>
+    
     <a class="logo">
       <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
     </a>
 
     <?php if (!empty($username)) { ?>
-      <h2 style='color: #fff; font-weight: bold; margin-right:500px;'>Welcome!
+      <h2 style='color: #fff; font-weight: bold; margin-right:500px; white-space: nowrap;'>Welcome!
         <?php echo $username; ?>
       </h2>
       <ul class="links">

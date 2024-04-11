@@ -27,11 +27,7 @@
         </a>
 
         <?php if (!empty($username)) { ?>
-<<<<<<< HEAD
-            <h2 style='color: #fff; font-weight: bold; margin-right:500px; white-space: nowrap;' >Welcome,
-=======
-            <h2 style='color: #fff; font-weight: bold; margin-right:500px;' > Welcome,
->>>>>>> 11a80c456b63e9688956ac67239868ee069f172f
+            <h2 style='color: #fff; font-weight: bold; margin-right:50px; white-space: nowrap;' >Welcome,
                 <?php echo $username; ?>!
             </h2>
             <ul class="links">

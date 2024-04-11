@@ -952,13 +952,13 @@ if (isset($_GET['error'])) {
 
 <header>
   <nav class="navbar">
-    <span class="hamburger-btn material-symbols-rounded">menu</span>
+    
     <a class="logo">
       <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
     </a>
 
     <?php if (!empty($username)) { ?>
-      <h2 style='color: #fff; font-weight: bold; margin-right:500px;'>Welcome!
+      <h2 style='color: #fff; font-weight: bold; margin-right:500px; white-space: nowrap;'>Welcome!
         <?php echo $username; ?>
       </h2>
       <ul class="links">
