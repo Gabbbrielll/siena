@@ -223,13 +223,24 @@ if (empty($username)) {
           <input type="text" id="status" name="Status" value="to confirm" style="display:none;">
           <input type="text" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>" style="display:none;">
 
-          <button type="submit" class="btn btn-book" style="display:none;">
-            <p class="button">Book Now</p>
+          <button type="button" class="btn btn-book" style="display:none;" onclick="confirmBooking()">
+          <p class="button">Book Now</p>
           </button>
         </form>
       </div>
     </div>
   </div>
+
+  <script>
+  function confirmBooking() {
+    // Display confirmation dialog
+    var confirmBooking = confirm("Are you sure you want to book this event?");
+    // If user confirms, submit the form
+    if (confirmBooking) {
+      document.getElementById("bookingForm").submit();
+    }
+  }
+</script>
 
   <br><br><br>
   <div class="twrapper">

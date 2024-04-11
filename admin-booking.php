@@ -1017,14 +1017,6 @@ if (isset($_POST['search'])) {
     <br>
     <div>
       <div>
-        <form method="POST" action="adminbookadd.php">
-          <label>Venue: </label><input type="text" name="Venue">
-          <label>Date: </label><input type="text" name="Date">
-          <label>Time: </label><input type="text" name="Time">
-          <label>Package: </label><input type="text" name="Package">
-          <label>Status: </label><input type="text" name="Status">
-          <input type="submit" name="Submit">
-        </form>
         <br>
 
 <!-- Search form -->
