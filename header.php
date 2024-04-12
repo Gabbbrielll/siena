@@ -33,16 +33,16 @@
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="content.php"><span class="home">Home</span></a></li>
-                <li><a href="booking.php"><span class="booking">Booking</span></a></li>
                 <li><a href="packages.php"><span class="packages">Packages</span></a></li>
+                <li><a href="booking.php"><span class="booking">Booking</span></a></li>
                 <a href="logout.php" class="logout-btn">LOG OUT</a>
             </ul>
         <?php } else { ?>
             <ul class="links">
                 <span class="close-btn material-symbols-rounded">close</span>
                 <li><a href="content.php"><span class="home">Home</span></a></li>
-                <li><a href="booking.php"><span class="booking">Booking</span></a></li>
                 <li><a href="packages.php"><span class="packages">Packages</span></a></li>
+                <li><a href="booking.php"><span class="booking">Booking</span></a></li>
                 <button class="login-btn">LOG IN</button>
             </ul>
         <?php } ?>
@@ -117,10 +117,11 @@
                 <div class="policy-text">
                     <input type="checkbox" id="policy" required name="checkbox" value="check" id="agree">
                     <label for="policy">
-                        I agree the
-                        <a href="terms.php" class="option">Terms & Conditions</a>
+                        I agree to the
+                        <a href="terms.php" target="_blank" class="option">Terms & Conditions</a>
                     </label>
                 </div>
+
                 <button type="submit" name="register">Sign Up</button>
             </form>
             <div class="bottom-link">

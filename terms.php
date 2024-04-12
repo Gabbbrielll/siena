@@ -273,7 +273,7 @@ function goBack() {
 		</section>
 		<footer class="modal-container-footer">
 			<button class="button is-ghost"><a href="content.php">Decline</button>
-			<button class="button is-primary" onclick="goBack()">Accept</button>
+			<button class="button is-primary" onclick="closeWindow()">Accept</button>
 		</footer>
 	</article>
 </div>
@@ -283,5 +283,11 @@ function goBack() {
 <BR><BR><BR><BR>
 
 </body>
+
+<script>
+    function closeWindow() {
+        window.close();
+    }
+</script>
 
 </html>
