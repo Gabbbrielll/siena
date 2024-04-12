@@ -1082,7 +1082,7 @@ input[type="date"]::placeholder { /* Style the placeholder text */
                     <a class="btnE" href="adminbookedit.php?id=<?php echo $row['Booking_ID']; ?>">Edit</a>
                     </td>
                     <td>
-                    <a class="btnD" href="adminbookdelete.php?id=<?php echo $row['Booking_ID']; ?>">Delete</a>
+                      <a class="btnD" href="#" onclick="confirmDelete(<?php echo $row['Booking_ID']; ?>)">Delete</a>
                     </td>
                 </tr>
               <?php
@@ -1097,6 +1097,17 @@ input[type="date"]::placeholder { /* Style the placeholder text */
 <div class="space">
 
 </div>
+
+<script>
+    function confirmDelete(id) {
+        var confirmation = confirm("Are you sure you want to delete this booking?");
+        if (confirmation) {
+            window.location.href = "adminbookdelete.php?id=" + id;
+        } else {
+            return false;
+        }
+    }
+</script>
 
 </body>
 

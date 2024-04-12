@@ -1025,9 +1025,8 @@ if (isset($_GET['error'])) {
                 </td>
                 <td><a class="btnE" href="contentadminedit.php?id=<?php echo $row['Content_ID']; ?>">Edit</a>
               </td>
-                <td>
-                  <a class="btnD" href="contentadmindelete.php?id=<?php echo $row['Content_ID']; ?>">Delete</a>
-                </td>
+              <td><a class="btnD" href="#" onclick="confirmDeleteContent(<?php echo $row['Content_ID']; ?>)">Delete</a>
+              </td>
               </tr>
               <?php
             }
@@ -1084,9 +1083,8 @@ if (isset($_GET['error'])) {
                 </td>
                 <td><a class="btnE" href="packageadminedit.php?id=<?php echo $row['Package_ID']; ?>">Edit</a>
               </td>
-                <td>
-                  <a class="btnD" href="packageadmindelete.php?id=<?php echo $row['Package_ID']; ?>">Delete</a>
-                </td>
+              <td><a class="btnD" href="#" onclick="confirmDeletePackage(<?php echo $row['Package_ID']; ?>)">Delete</a>
+              </td>
               </tr>
               <?php
             }
@@ -1139,6 +1137,18 @@ if (isset($_GET['error'])) {
       }
       return true; // Allow form submission
     }
+
+    function confirmDeleteContent(id) {
+    if (confirm("Are you sure you want to delete this content?")) {
+      window.location.href = 'contentadmindelete.php?id=' + id;
+    }
+  }
+
+  function confirmDeletePackage(id) {
+    if (confirm("Are you sure you want to delete this package?")) {
+      window.location.href = 'packageadmindelete.php?id=' + id;
+    }
+  }
 
   </script>
 
