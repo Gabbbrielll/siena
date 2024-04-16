@@ -1028,6 +1028,7 @@ input[type="date"]::placeholder { /* Style the placeholder text */
         <span class="close-btn material-symbols-rounded">close</span>
         <li><a href="admin-booking.php"><span class="home">Manage Booking</span></a></li>
         <li><a href="admin-content.php"><span class="booking">Manage Content</span></a></li>
+        <li><a href=""><span class="">Customer Information</span></a></li>
         <a href="logout.php" class="logout-btn">LOG OUT</a>
       </ul>
     <?php } else { ?>
@@ -1058,20 +1059,21 @@ input[type="date"]::placeholder { /* Style the placeholder text */
       <div class="twrapper">
         <table border="1">
           <thead>
-            <th>Customer Name</th>
+            <th>Cust ID</th>
+            <th>Cust Name</th>
             <th>Venue</th>
             <th>Date</th>
             <th>Time</th>
             <th>Package</th>
             <th>Status</th>
             <th>Edit</th>
-            <th>Delete</th>
           </thead>
           <tbody>
               <?php
               while ($row = mysqli_fetch_array($result)) {
               ?>
                 <tr>
+                  <td><?php echo htmlspecialchars($row['cust_id']); ?></td>
                   <td><?php echo htmlspecialchars($row['cust_uname']); ?></td>
                   <td><?php echo htmlspecialchars($row['venue_name']); ?></td>
                   <td><?php echo htmlspecialchars($row['Date']); ?></td>
@@ -1080,9 +1082,6 @@ input[type="date"]::placeholder { /* Style the placeholder text */
                   <td><?php echo htmlspecialchars($row['Status']); ?></td>
                   <td>
                     <a class="btnE" href="adminbookedit.php?id=<?php echo $row['Booking_ID']; ?>">Edit</a>
-                    </td>
-                    <td>
-                      <a class="btnD" href="#" onclick="confirmDelete(<?php echo $row['Booking_ID']; ?>)">Cancel</a>
                     </td>
                 </tr>
               <?php

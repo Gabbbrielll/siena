@@ -965,6 +965,7 @@ if (isset($_GET['error'])) {
         <span class="close-btn material-symbols-rounded">close</span>
         <li><a href="admin-booking.php"><span class="home">Manage Booking</span></a></li>
         <li><a href="admin-content.php"><span class="booking">Manage Content</span></a></li>
+        <li><a href=""><span class="">Customer Information</span></a></li>
         <a href="logout.php" class="logout-btn">LOG OUT</a>
       </ul>
     <?php } else { ?>
@@ -1026,7 +1027,7 @@ if (isset($_GET['error'])) {
                 <td><a class="btnE" href="contentadminedit.php?id=<?php echo $row['Content_ID']; ?>">Edit</a>
               </td>
                 <td>
-                <a class="btnD" href="#" onclick="confirmDeleteContent(<?php echo $row['Content_ID']; ?>)">Cancel</a>
+                <a class="btnD" href="#" onclick="confirmDeleteContent(<?php echo $row['Content_ID']; ?>)">Delete</a>
                 </td>
               </tr>
               <?php
@@ -1083,7 +1084,7 @@ if (isset($_GET['error'])) {
                 </td>
                 <td><a class="btnE" href="packageadminedit.php?id=<?php echo $row['Package_ID']; ?>">Edit</a>
               </td>
-              <td><a class="btnD" href="#" onclick="confirmDeletePackage(<?php echo $row['Package_ID']; ?>)">Cancel</a>
+              <td><a class="btnD" href="#" onclick="confirmDeletePackage(<?php echo $row['Package_ID']; ?>)">Delete</a>
               </td>
               </tr>
               <?php

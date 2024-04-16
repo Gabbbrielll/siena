@@ -137,76 +137,46 @@ var verificationCode; // Declare a global variable to store the verification cod
 var codeReceived = false; // Track whether a verification code has been received
 
 function getCode(button) {
-    var email = document.getElementById("email").value;
-    if (email.trim() !== "") {
-        button.disabled = true; // Disable the button
-        var countdown = 180; // 3 minutes in seconds
-        var interval = setInterval(function() {
-            countdown--;
-            if (countdown <= 0) {
-                clearInterval(interval);
-                button.disabled = false; // Enable the button
-                button.innerHTML = "Get Code"; // Reset button text
+    var emailInput = document.getElementById("email");
+    var email = emailInput.value.trim();
+    
+    // Check if the email is valid
+    if (!validateEmail(email)) {
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return;
+    }
+
+    button.disabled = true; // Disable the button
+    var countdown = 180; // 3 minutes in seconds
+    var interval = setInterval(function() {
+        countdown--;
+        if (countdown <= 0) {
+            clearInterval(interval);
+            button.disabled = false; // Enable the button
+            button.innerHTML = "Get Code"; // Reset button text
+        } else {
+            button.innerHTML = countdown + "s"; // Show countdown in button text
+        }
+    }, 1000);
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "send_verification_code.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                verificationCode = xhr.responseText.trim(); // Store the verification code received from the server
+                codeReceived = true; // Set the flag to true
+                alert("Verification code sent to your email."); // Alert the user
             } else {
-                button.innerHTML = countdown + "s"; // Show countdown in button text
+                alert("Failed to send verification code. Please try again later.");
             }
-        }, 1000);
-        
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "send_verification_code.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    verificationCode = xhr.responseText.trim(); // Store the verification code received from the server
-                    codeReceived = true; // Set the flag to true
-                    alert("Verification code sent to your email."); // Alert the user
-                } else {
-                    alert("Failed to send verification code. Please try again later.");
-                }
-            }
-        };
-        xhr.send("email=" + encodeURIComponent(email));
-    } else {
-        alert("Please enter your email address.");
-    }
-}
-/*
-function getCode() {
-    var email = document.getElementById("email").value;
-    if (email.trim() !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "send_verification_code.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    verificationCode = xhr.responseText.trim();; // Store the verification code received from the server
-                    codeReceived = true; // Set the flag to true
-                    alert("Verification code sent to your email."); // Alert the user
-                } else {
-                    alert("Failed to send verification code. Please try again later.");
-                }
-            }
-        };
-        xhr.send("email=" + encodeURIComponent(email));
-    } else {
-        alert("Please enter your email address.");
-    }
+        }
+    };
+    xhr.send("email=" + encodeURIComponent(email));
 }
 
-function getCode() {
-        // Generate a random 6-digit number
-        var min = 100000; // Minimum value for a 6-digit number
-        var max = 999999; // Maximum value for a 6-digit number
-        var verificationCode = Math.floor(Math.random() * (max - min + 1)) + min;
-        // You can store the verification code in a variable for later use if needed
-        verificationCode = verificationCode;
-        codeReceived = true;
-        // Use the generated verification code
-        alert("Verification code generated: " + verificationCode);
-}
-*/
 function verifyCode() {
     var enteredCode = document.getElementById("verification_code").value; // Retrieve the value of the entered verification code
     if (codeReceived) { // Check if a verification code has been received
@@ -224,9 +194,12 @@ function verifyCode() {
 
 // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     function validateEmail(email) {
-        // Regular expression for basic email validation
-        var re = /\S+@\S+\.\S+/;
-        return re.test(email);
+        // Regular expression for email validation
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Split the email address by '@' symbol
+        var parts = email.split('@');
+        // Check if the local and domain parts are not empty and there's only one '@' symbol
+        return re.test(email) && parts.length === 2;
     }
 
     function validatePassword(password) {
