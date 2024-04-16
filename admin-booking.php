@@ -1082,7 +1082,7 @@ input[type="date"]::placeholder { /* Style the placeholder text */
                     <a class="btnE" href="adminbookedit.php?id=<?php echo $row['Booking_ID']; ?>">Edit</a>
                     </td>
                     <td>
-                      <a class="btnD" href="#" onclick="confirmDelete(<?php echo $row['Booking_ID']; ?>)">Delete</a>
+                      <a class="btnD" href="#" onclick="confirmDelete(<?php echo $row['Booking_ID']; ?>)">Cancel</a>
                     </td>
                 </tr>
               <?php
