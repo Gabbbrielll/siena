@@ -120,6 +120,7 @@ h4{
     background: #fff;
     border: 2px solid #f1d6a5;
     transform: translate(-50%, -70%);
+   
 }
 
 .show-popup .form-popup {
@@ -188,6 +189,8 @@ h4{
 .form-box .form-content {
     width: 100%;
     padding: 35px;
+    overflow: scroll;
+    max-height: 700px;
 }
 
 .form-box h2 {

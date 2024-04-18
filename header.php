@@ -84,7 +84,7 @@
             <p>To become a part of our community, please sign up using your personal information.</p>
         </div>
         <!-- SIGN UP -->
-        <div class="form-content">
+        <div class="form-content" >
             <h2>SIGNUP</h2>
             <form method="POST" action="registerconnect.php" onsubmit="return validateForm() && verifyCode()">
                 <div class="input-field">
@@ -93,8 +93,21 @@
                 </div>
                 <div class="input-field">
                     <input type="text" name="cust_uname" required>
-                    <label>Enter your Username</label>
+                    <label>Enter your Firstname</label>
                 </div>
+                <div class="input-field">
+                    <input type="text" name="cust_Lname" required>
+                    <label>Enter your Lastname</label>
+                </div>
+                <div class="input-field">
+                    <input type="number" name="cust_contact" min="00000000000" max="99999999999" required>
+                    <label>Enter your Contact Number</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="cust_add" required>
+                    <label>Enter your Address</label>
+                </div>
+              
                 <div class="input-field">
                     <input type="password" name="cust_pass" id="password" autocomplete="off" required>
                     <label>Create password</label>
