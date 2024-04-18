@@ -49,6 +49,54 @@ if (empty($username)) {
     .booking {
       text-decoration: underline;
     }
+
+    /*ITO YUNG CSS NG BOOKING POPUP CONTAINER*/
+    #bookingModalContainer {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+      z-index: 9999; /* Make sure it's on top */
+    }
+
+    /* Style for modal content */
+    #bookingModal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+      width: 400px; /* Adjust width as needed */
+    }
+
+    /* Close button style */
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    /* Style for modal content text */
+    .modal-content h2 {
+      margin-top: 0;
+    }
+
+    /* Set background color to transparent */
+    .modal-container-footer label {
+      background-color: white; 
+    }
+
+    /* Set hyperlink color to red */
+    .modal-container-footer a {
+      color: red; 
+    }
   </style>
 
 </head>
@@ -85,6 +133,7 @@ if (empty($username)) {
           if (xhr.status === 200) {
             // Parse JSON response
             var response = JSON.parse(xhr.responseText);
+            
             // Update time slots dropdown
             var timeSlotsDropdown = document.getElementById("time");
             timeSlotsDropdown.innerHTML = "";
@@ -98,16 +147,67 @@ if (empty($username)) {
             document.getElementById("timeSlots").style.display = "block";
             document.getElementById("package").style.display = "block";
             document.querySelector(".btn-book").style.display = "block";
+
           } else {
             console.error("AJAX request failed with status: " + xhr.status);
           }
         }
       };
+      
       // Send POST data
       var params = "date=" + encodeURIComponent(date) + "&venue=" + encodeURIComponent(venue);
       xhr.send(params);
     });
-  });
+
+  // Added a Validation on the Book Now Button ---APR 18 2024--- //
+
+   // Add event listener to the "Book Now" button
+   document.querySelector(".btn-book").addEventListener("click", function() {
+        // Check if a package is selected
+        var selectedPackage = document.getElementById("packageSelect").value;
+        if (selectedPackage === "") {
+            alert("Please select a package first.");
+            return; // Prevent further execution
+        }
+
+        // If a package is selected, proceed with booking confirmation
+        var confirmBooking = confirm("Are you sure you want to book this event?");
+        if (confirmBooking) {
+             // If user confirms, display booking summary
+            displayBookingSummary();
+        }
+    });
+});
+
+// BOOKING SUMMARY ---APR 18 2024--- //
+  // Function to display the booking summary in the modal
+  function displayBookingSummary() {
+    // Get selected values
+    var selectedDate = document.getElementById("date").value;
+    var selectedVenue = document.getElementById("venue").options[document.getElementById("venue").selectedIndex].text;
+    var selectedTime = document.getElementById("time").value;
+    var selectedPackage = document.getElementById("packageSelect").options[document.getElementById("packageSelect").selectedIndex].text;
+
+    // Create the booking summary
+    var summary = "Date: " + selectedDate + "<br>";
+    summary += "Venue: " + selectedVenue + "<br>";
+    summary += "Time: " + selectedTime + "<br>";
+    summary += "Package: " + selectedPackage;
+
+    // Display the booking summary in the modal
+    document.getElementById("bookingSummary").innerHTML = summary;
+    openModal();
+
+     // Call the callback function if provided
+     if (callback && typeof(callback) === "function") {
+      callback();
+    }
+  }
+
+  // Function to submit the form
+  function submitForm() {
+    document.getElementById("bookingForm").submit();
+  }
 </script>
 
 <body>
@@ -182,7 +282,7 @@ if (empty($username)) {
           <div class="form__group" id="package" style="display: none;">
     <div class="input__group">
         <div class="under">
-            <select id="package" name="Package" required>
+            <select id="packageSelect" name="Package" required>
                 <option value="">Select Package</option>
                 <?php
                 // Establishing a database connection
@@ -223,7 +323,7 @@ if (empty($username)) {
           <input type="text" id="status" name="Status" value="to confirm" style="display:none;">
           <input type="text" id="cust_id" name="cust_id" value="<?php echo $cust_id; ?>" style="display:none;">
 
-          <button type="button" class="btn btn-book" style="display:none;" onclick="confirmBooking()">
+          <button type="button" class="btn btn-book" style="display:none;">
           <p class="button">Book Now</p>
           </button>
         </form>
@@ -231,15 +331,39 @@ if (empty($username)) {
     </div>
   </div>
 
-  <script>
-  function confirmBooking() {
-    // Display confirmation dialog
-    var confirmBooking = confirm("Are you sure you want to book this event?");
-    // If user confirms, submit the form
-    if (confirmBooking) {
-      document.getElementById("bookingForm").submit();
-    }
+  <!-- NEW BOOKING SUMMARY APR 18 2024 -->
+
+  <div id="bookingModalContainer">
+    <div id="bookingModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+        <h2>Here are the summary of your booking details:</h2>
+        <p id="bookingSummary"></p>
+        <h2>General Guidelines and Payment Terms</h2>
+        <p>Before proceeding with your booking, please review our Terms & Conditions
+        <a href="terms2.php">Terms & Conditions</a>.</p>
+      </div>
+      <div class="modal-container-footer">
+    <label>
+        <input type="checkbox" id="acceptTermsCheckbox" required> I have read and agree to the <a href="terms.php">Terms & Conditions</a>
+    </label>
+              </div>
+    </div>
+  </div>
+
+<script>
+  // Function to display the modal
+  function openModal() {
+    var modalContainer = document.getElementById("bookingModalContainer");
+    modalContainer.style.display = "block";
   }
+
+  // Function to close the modal
+  function closeModal() {
+    var modalContainer = document.getElementById("bookingModalContainer");
+    modalContainer.style.display = "none";
+  }
+
 </script>
 
   <br><br><br>
