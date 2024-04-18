@@ -341,13 +341,15 @@ if (empty($username)) {
         <p id="bookingSummary"></p>
         <h2>General Guidelines and Payment Terms</h2>
         <p>Before proceeding with your booking, please review our Terms & Conditions
-        <a href="terms2.php">Terms & Conditions</a>.</p>
+        </p>
       </div>
       <div class="modal-container-footer">
     <label>
-        <input type="checkbox" id="acceptTermsCheckbox" required> I have read and agree to the <a href="terms.php">Terms & Conditions</a>
+        <input type="checkbox" id="acceptTermsCheckbox" required> I have read and agree to the <a href="reviewterms.php">Terms & Conditions</a>
     </label>
-              </div>
+    <button class="button" onclick="submitBooking()">Book this Event</button>
+    <button class="button" onclick="goBack()">Back</button>
+      </div>
     </div>
   </div>
 
@@ -364,6 +366,21 @@ if (empty($username)) {
     modalContainer.style.display = "none";
   }
 
+
+  function submitBooking() {
+        var acceptedTerms = document.getElementById("acceptTermsCheckbox").checked;
+        if (!acceptedTerms) {
+            alert("Please accept the Terms & Conditions.");
+            return; // Prevent further execution
+        }
+
+        // Submit the booking form
+        document.getElementById("bookingForm").submit();
+    }
+
+    function goBack() {
+        window.location.href = 'booking.php';
+    }
 </script>
 
   <br><br><br>
