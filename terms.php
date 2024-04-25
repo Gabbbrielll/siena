@@ -250,25 +250,17 @@ function goBack() {
 	<article class="modal-container">
 		<header class="modal-container-header">
 			<h1 class="modal-container-title">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-					<path fill="none" d="M0 0h24v24H0z" />
-					<path fill="currentColor" d="M14 9V4H5v16h6.056c.328.417.724.785 1.18 1.085l1.39.915H3.993A.993.993 0 0 1 3 21.008V2.992C3 2.455 3.449 2 4.002 2h10.995L21 8v1h-7zm-2 2h9v5.949c0 .99-.501 1.916-1.336 2.465L16.5 21.498l-3.164-2.084A2.953 2.953 0 0 1 12 16.95V11zm2 5.949c0 .316.162.614.436.795l2.064 1.36 2.064-1.36a.954.954 0 0 0 .436-.795V13h-5v3.949z" />
-				</svg>
-				Terms & Conditions
+				Data Privacy
 			</h1>
 			
 		</header>
 		<section class="modal-container-body rtf">
-			<h2>Payment (Downpayment)</h2>
+			<h2>Republic Act No. 10173</h2>
 
-			<p>Reservation fee of PHP10,000 upon confirmation (non- consumable, non-transferable and non-refundable). This will serve as security deposit which is subject for refund three (3) working days after the event date. 50% downpayment upon signing of contract two (2) months prior to event date. Full payment is due two (2) weeks before the event. </p>
+			<p> The Data Privacy Act is a law that seeks to protect all forms of information, be it private, personal, or sensitive. It is the policy of the State to protect the fundamental human right of privacy and communication while ensuring the free flow of information to promote innovation and growth. The State recognizes the vital role of information and communications technology in nation-building and its inherent obligation to ensure that personal information in information and communications systems in the government and the private sector are secured and protected. The owners of this form shall secure and protect any personal data collected in line with the above statement and use only as an archive document after the event. By agreeing to the terms and conditions, you hereby give your consent to Siena's Hotel and Events Place Corporation. </p>
 
 			
-			<ol>
-				<li>Rates are subject to change without prior notice</li>
-				<li>Venue capacity may adjust depending on the LGU guidelines</li>
-			</ol>
-
+			
 			
 		</section>
 		<footer class="modal-container-footer">
