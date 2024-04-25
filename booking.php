@@ -97,6 +97,43 @@ if (empty($username)) {
     .modal-container-footer a {
       color: red; 
     }
+
+    .modal-container-footer {
+	padding: 20px 32px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	border-top: 1px solid #ddd;
+	gap: 12px;
+	position: relative;
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: -51px;
+		left: 24px;
+		right: 24px;
+		height: 50px;
+		flex-shrink: 0;
+		background-image: linear-gradient(to top, rgba(#fff, 0.75), transparent);
+		pointer-events: none;
+	}
+}
+
+.buttonn {
+	padding: 12px 20px;
+	border-radius: 8px;
+	background-color: #50262f;
+	border: 0;
+	font-weight: 600;
+	cursor: pointer;
+	transition: 0.15s ease;
+  color: #fff;
+  
+
+}
+
+
   </style>
 
 </head>
@@ -333,25 +370,32 @@ if (empty($username)) {
 
   <!-- NEW BOOKING SUMMARY APR 18 2024 -->
 
+  
   <div id="bookingModalContainer">
     <div id="bookingModal" class="modal">
       <span class="close" onclick="closeModal()">&times;</span>
       <div class="modal-content">
-        <h2>Here are the summary of your booking details:</h2>
+        <h2>Summary of booking details:</h2>
         <p id="bookingSummary"></p>
+        <br>
         <h2>General Guidelines and Payment Terms</h2>
         <p>Before proceeding with your booking, please review our Terms & Conditions
+          <br><br>
+        <label>
+        <input type="checkbox" id="acceptTermsCheckbox" required> I have read and agree to the <a href="reviewterms.php" style="color: red">Terms & Conditions</a>
+    </label>
         </p>
+        <br>
       </div>
       <div class="modal-container-footer">
-    <label>
-        <input type="checkbox" id="acceptTermsCheckbox" required> I have read and agree to the <a href="reviewterms.php">Terms & Conditions</a>
-    </label>
-    <button class="button" onclick="submitBooking()">Book this Event</button>
-    <button class="button" onclick="goBack()">Back</button>
+
+      <button class="buttonn" onclick="goBack()" style="height: 9.1vh; width: 135px; margin-right: 9vh;">Back</button>
+    <button class="buttonn" onclick="submitBooking()">Book this Event</button>
+    
       </div>
     </div>
   </div>
+
 
 <script>
   // Function to display the modal
