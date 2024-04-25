@@ -259,7 +259,7 @@ function goBack() {
 			
 		</header>
 		<section class="modal-container-body rtf">
-			<h2>PaymentSSSS (Downpayment)</h2>
+			<h2>Payment (Downpayment)</h2>
 
 			<p>Reservation fee of PHP10,000 upon confirmation (non- consumable, non-transferable and non-refundable). This will serve as security deposit which is subject for refund three (3) working days after the event date. 50% downpayment upon signing of contract two (2) months prior to event date. Full payment is due two (2) weeks before the event. </p>
 
@@ -272,7 +272,7 @@ function goBack() {
 			
 		</section>
 		<footer class="modal-container-footer">
-			<button class="button is-ghost"><a href="content.php">Decline</button>
+			<button class="button is-ghost"><a href="booking.php">Decline</button>
             <button class="button is-primary" onclick="acceptTerms()">Accept</button>
 		</footer>
 	</article>
@@ -286,9 +286,7 @@ function goBack() {
 
 <script>
     function acceptTerms() {
-        window.close(); // Close the modal
-        // Redirect back to the booking summary container
-        window.location.href = '#bookingModalContainer';
+        window.close();
     }
 </script>
 

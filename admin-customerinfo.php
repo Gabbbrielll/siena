@@ -1,6 +1,6 @@
 <?php
 session_start();
-$contentadminconn = mysqli_connect("localhost", "root", "", "sienas_events_place");
+$adminbookconn = mysqli_connect("localhost", "root", "", "sienas_events_place");
 
 // Check connection
 if (mysqli_connect_errno()) {
@@ -16,17 +16,46 @@ if (isset($_SESSION['ad_uname'])) {
 
 // Redirect to login page if user is not logged in
 if (empty($username)) {
-  echo "<script>alert('Please login first.');</script>";
-  echo "<script>window.location.href = 'content.php';</script>";
-  exit;
-}
-
-$error_message = ""; // Check if there's an error message
-if (isset($_GET['error'])) {
-  $error = $_GET['error'];
-  if ($error === 'empty_fields') {
-    $error_message = "Please fill out all the required fields.";
+    echo "<script>alert('Please login first.');</script>";
+    echo "<script>window.location.href = 'content.php';</script>";
+    exit;
   }
+
+// Handle search query
+if (isset($_POST['search'])) {
+  $search_name = $_POST['search_name'];
+  $search_id = $_POST['search_id'];
+  
+  // Initialize the WHERE clause
+  $where_clause = '';
+
+  // Check if either search field is filled out
+  if (!empty($search_name) && !empty($search_id)) {
+    // If both fields are filled out, search by both name and date
+    $where_clause = "WHERE cust_id LIKE '%$search_id%' AND cust_uname = '$search_name'";
+  } else if (!empty($search_name)) {
+    // If only the name field is filled out, search by name
+    $where_clause = "WHERE cust_uname LIKE '%$search_name%'";
+  } else if (!empty($search_id)) {
+    // If only the date field is filled out, search by date
+    $where_clause = "WHERE cust_id = '$search_id'";
+  }
+  
+  // Perform SQL query to filter bookings based on user input
+  $query = "SELECT cust_id, cust_email, cust_uname, cust_lname, cust_contact, cust_address
+            FROM customer 
+            $where_clause";
+
+  // Execute the SQL query
+  $result = mysqli_query($adminbookconn, $query);
+
+} else {
+  // If no search query, retrieve all bookings
+  $query = "SELECT cust_id, cust_email, cust_uname, cust_lname, cust_contact, cust_address
+            FROM customer";
+
+  // Execute the SQL query
+  $result = mysqli_query($adminbookconn, $query);
 }
 ?>
 <!DOCTYPE html>
@@ -38,9 +67,10 @@ if (isset($_GET['error'])) {
   <title>Siena's Events Place</title>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
-  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="style.css"> -->
   <link rel="stylesheet" href="swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
   <script src="script.js" defer></script>
 
@@ -950,6 +980,33 @@ if (isset($_GET['error'])) {
       background-color: var(--extra-light);
     }
 
+    input[type="text"] {
+  width: 100%; /* Width of the search bar */
+  padding: 12px 20px; /* Padding inside the search bar */
+  margin: 8px 0; /* Margin above and below the search bar */
+  display: inline-block; /* Makes the search bar behave like an inline element */
+  border: 1px solid #ccc; /* Border around the search bar */
+  border-radius: 4px; /* Rounded corners of the search bar */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+input[type="text"]::placeholder { /* Style the placeholder text */
+  color: #aaa; /* Grey color for placeholder text */
+}
+
+input[type="date"] {
+  width: 100%; /* Width of the search bar */
+  padding: 12px 20px; /* Padding inside the search bar */
+  margin: 8px 0; /* Margin above and below the search bar */
+  display: inline-block; /* Makes the search bar behave like an inline element */
+  border: 1px solid #ccc; /* Border around the search bar */
+  border-radius: 4px; /* Rounded corners of the search bar */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+input[type="date"]::placeholder { /* Style the placeholder text */
+  color: #aaa; /* Grey color for placeholder text */
+}
 
 
     /* -------NEW----1/28----- LOCAL*/
@@ -959,13 +1016,13 @@ if (isset($_GET['error'])) {
 
 <header>
   <nav class="navbar">
-    <span class="hamburger-btn material-symbols-rounded">menu</span>
+    
     <a class="logo">
       <img src="Siena_s_Events_Place-removebg-preview.png" alt="logo">
     </a>
 
     <?php if (!empty($username)) { ?>
-      <h2 style='color: #fff; font-weight: bold; margin-right:500px;'>Welcome!
+      <h2 style='color: #fff; font-weight: bold; margin-right:500px; white-space: nowrap;'>Welcome!
         <?php echo $username; ?>
       </h2>
       <ul class="links">
@@ -983,182 +1040,57 @@ if (isset($_GET['error'])) {
 </header>
 
 </br>
-
-<!-- --------NEW---Feb24 ------>
+<!-- --------NEW---jan 28------>
 <div class="before-admin-bg">
   <div class="admin-bg">
     <br>
     <div>
-      <div class="contform">
-      <form id="contentForm" method="POST" enctype="multipart/form-data" action="contentadminadd.php" onsubmit="return validateForm()">
-        <label>Image:</label><input type="file" name="Image" required>
-        <label>Title:</label><input type="text" name="Title" required>
-        <label>Capacity:</label><input type="text" name="Capacity" required>
-        <label>Price:</label><input type="text" name="Price" required>
-        <label>Description:</label><input type="text" name="Description" required>
-        <input type="submit" name="Submit">
-      </form>
-      </div>
-      <br>
-      <div class="twrapper">
-        <table border="1">
-          <thead>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Capacity</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </thead>
-          <tbody>
-            <?php
-            include('contentadminconn.php');
-            $query = mysqli_query($contentadminconn, "select * from `contenttable`");
-            while ($row = mysqli_fetch_array($query)) {
-              ?>
-              <tr>
-                <td><img src="../SIENA-MAIN/<?php echo $row['Image']; ?>" width="auto" height="100"> </td>
-                <td>
-                  <?php echo $row['Title']; ?>
-                </td>
-                <td>
-                  <?php echo $row['Capacity']; ?>
-                </td>
-                <td>
-                  <?php echo $row['Price']; ?>
-                </td>
-                <td>
-                  <?php echo $row['Description']; ?>
-                </td>
-                <td><a class="btnE" href="contentadminedit.php?id=<?php echo $row['Content_ID']; ?>">Edit</a>
-              </td>
-                <td>
-                <a class="btnD" href="#" onclick="confirmDeleteContent(<?php echo $row['Content_ID']; ?>)">Delete</a>
-                </td>
-              </tr>
-              <?php
-            }
-            ?>
-          </tbody>
-        </table>
-        <br>
-      </div>
-
       <div>
-      <br><br>
-      <div class="contform2">
-      <form id="contentForm2" method="POST" enctype="multipart/form-data" action="packageadminadd.php" onsubmit="return validatePackageForm()">
-        <label>Image: </label><input type="file" name="PackageImage" required>
-        <label>Title: </label><input type="text" name="PackageTitle" required>
-        <label>Type: </label><input type="text" name="PackageType" required>
-        <label>Price: </label><input type="text" name="PackagePrice" required>
-        <label>Description: </label><input type="text" name="PackageDescription" required>
-        <input type="submit" name="Submit">
-      </form>
+        <br>
+
+<!-- Search form -->
+<form method="POST" action="">
+  <input type="text" name="search_name" placeholder="Search by customer first name">
+  <input type="text" name="search_id" placeholder="Search by customer id">
+  <button type="submit" name="search">Search</button>
+</form>
+        
       </div>
       <br>
       <div class="twrapper">
-        <table border="1">
+      <table border="1">
           <thead>
-            <th>Package Image</th>
-            <th>Package Title</th>
-            <th>Package Type</th>
-            <th>Package Price</th>
-            <th>Package Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Cust ID</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact Number</th>
+            <th>Address</th>
           </thead>
           <tbody>
-            <?php
-            include('packageadminconn.php');
-            $query = mysqli_query($packageadminconn, "select * from `packagetable`");
-            while ($row = mysqli_fetch_array($query)) {
-              ?>
-              <tr>
-                <td><img src="../siena-main/<?php echo $row['PackageImage']; ?>" width="auto" height="100"> </td>
-                <td>
-                  <?php echo $row['PackageTitle']; ?>
-                </td>
-                <td>
-                  <?php echo $row['PackageType']; ?>
-                </td>
-                <td>
-                  <?php echo $row['PackagePrice']; ?>
-                </td>
-                <td>
-                  <?php echo $row['PackageDescription']; ?>
-                </td>
-                <td><a class="btnE" href="packageadminedit.php?id=<?php echo $row['Package_ID']; ?>">Edit</a>
-              </td>
-              <td><a class="btnD" href="#" onclick="confirmDeletePackage(<?php echo $row['Package_ID']; ?>)">Delete</a>
-              </td>
-              </tr>
               <?php
-            }
-            ?>
-          </tbody>
+              while ($row = mysqli_fetch_array($result)) {
+              ?>
+                <tr>
+                  <td><?php echo htmlspecialchars($row['cust_id']); ?></td>
+                  <td><?php echo htmlspecialchars($row['cust_email']); ?></td>
+                  <td><?php echo htmlspecialchars($row['cust_uname']); ?></td>
+                  <td><?php echo htmlspecialchars($row['cust_lname']); ?></td>
+                  <td><?php echo htmlspecialchars($row['cust_contact']); ?></td>
+                  <td><?php echo htmlspecialchars($row['cust_address']); ?></td>
+                </tr>
+              <?php
+              }
+              ?>
+            </tbody>
         </table>
       </div>
-
-
-      <!-- Error message display -->
-       <!-- pwedeng wala na toh -->
-      <?php if (!empty($error_message)): ?>
-        <div class="error-message">
-          <?php echo $error_message; ?>
-        </div>
-      <?php endif; ?>
     </div>
   </div>
 </div>
 <div class="space">
 
 </div>
-<!-- --------NEW--------->
-<script>
-    function validateForm() {
-      var form = document.getElementById("contentForm");
-      var title = form.elements["Title"].value;
-      var capacity = form.elements["Capacity"].value;
-      var price = form.elements["Price"].value;
-      var description = form.elements["Description"].value;
-
-      // Check if any required field is empty
-      if (title.trim() === '' || capacity.trim() === '' || price.trim() === '' || description.trim() === '') {
-        alert("Please fill out all the required fields.");
-        return false; // Prevent form submission
-      }
-      return true; // Allow form submission
-    }
-
-    function validatePackageForm() {
-      var form = document.getElementById("contentForm2");
-      var title = form.elements["PackageTitle"].value;
-      var type = form.elements["PackageType"].value;
-      var price = form.elements["PackagePrice"].value;
-      var description = form.elements["PackageDescription"].value;
-
-      // Check if any required field is empty
-      if (title.trim() === '' || type.trim() === '' || price.trim() === '' || description.trim() === '') {
-        alert("Please fill out all the required fields.");
-        return false; // Prevent form submission
-      }
-      return true; // Allow form submission
-    }
-
-    function confirmDeleteContent(id) {
-    if (confirm("Are you sure you want to delete this content?")) {
-      window.location.href = 'contentadmindelete.php?id=' + id;
-    }
-  }
-
-  function confirmDeletePackage(id) {
-    if (confirm("Are you sure you want to delete this package?")) {
-      window.location.href = 'packageadmindelete.php?id=' + id;
-    }
-  }
-  </script>
 
 </body>
 

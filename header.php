@@ -96,15 +96,15 @@
                     <label>Enter your Firstname</label>
                 </div>
                 <div class="input-field">
-                    <input type="text" name="cust_Lname" required>
+                    <input type="text" name="cust_lname" required>
                     <label>Enter your Lastname</label>
                 </div>
                 <div class="input-field">
-                    <input type="number" name="cust_contact" min="00000000000" max="99999999999" required>
+                    <input type="text" name="cust_contact" id="cust_contact" required>
                     <label>Enter your Contact Number</label>
                 </div>
                 <div class="input-field">
-                    <input type="text" name="cust_add" required>
+                    <input type="text" name="cust_address" required>
                     <label>Enter your Address</label>
                 </div>
               
@@ -250,11 +250,19 @@ function verifyCode() {
         return true;
     }
 
+    function validateContact(contact) {
+        // Regular expression for validating contact number
+        var regex = /^0\d{10}$/;
+        return regex.test(contact);
+    }
+
     function validateForm() {
         var emailInput = document.getElementById("email");
         var email = emailInput.value.trim();
         var passwordInput = document.getElementById("password");
         var password = passwordInput.value.trim();
+        var contactInput = document.getElementById("cust_contact");
+        var contact = contactInput.value.trim();
 
         // Check if the email is valid
         if (!validateEmail(email)) {
@@ -269,6 +277,14 @@ function verifyCode() {
             passwordInput.focus();
             return false;
         }
+
+        // Check if the contact number is valid
+        if (!validateContact(contact)) {
+            alert("Contact number must start with 0 and have exactly 11 digits.");
+            contactInput.focus();
+            return false;
+        }
+
 
         return true;
     }

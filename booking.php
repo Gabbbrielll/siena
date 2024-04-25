@@ -382,7 +382,7 @@ if (empty($username)) {
         <p>Before proceeding with your booking, please review our Terms & Conditions
           <br><br>
         <label>
-        <input type="checkbox" id="acceptTermsCheckbox" required> I have read and agree to the <a href="reviewterms.php" style="color: red">Terms & Conditions</a>
+        <input type="checkbox" id="acceptTermsCheckbox" required> I have read and agree to the <a href="reviewterms.php" target="_blank" style="color: red">Terms & Conditions</a>
     </label>
         </p>
         <br>

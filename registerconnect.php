@@ -44,12 +44,12 @@
         return ($stmt->num_rows() > 0);
     }
 
-    function registerUser($cust_email, $cust_uname, $encrypted_password, $secret_key_hex) {
+    function registerUser($cust_email, $cust_uname, $cust_lname, $cust_contact, $cust_address, $encrypted_password, $secret_key_hex) {
         global $conn;
 
-        $qry2 = "INSERT INTO customer (cust_email, cust_uname, cust_pass, secret_key) VALUES (?, ?, ?, ?)";
+        $qry2 = "INSERT INTO customer (cust_email, cust_uname, cust_lname, cust_contact, cust_address, cust_pass, secret_key) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt2 = $conn->prepare($qry2);
-        $stmt2->bind_param("ssss", $cust_email, $cust_uname, $encrypted_password, $secret_key_hex);
+        $stmt2->bind_param("sssssss", $cust_email, $cust_uname, $cust_lname, $cust_contact, $cust_address, $encrypted_password, $secret_key_hex);
         $stmt2->execute();
 
         return $stmt2->affected_rows > 0; // Return true if registration was successful
@@ -58,6 +58,11 @@
     if (isset($_POST['register'])) {
         $cust_email           = prepareInput($_POST['cust_email']);
         $cust_uname           = prepareInput($_POST['cust_uname']);
+
+        $cust_lname           = prepareInput($_POST['cust_lname']);
+        $cust_contact           = prepareInput($_POST['cust_contact']);
+        $cust_address           = prepareInput($_POST['cust_address']);
+
         $cust_pass            = prepareInput($_POST['cust_pass']);
         $confirm_password     = prepareInput($_POST['confirmPassword']);
 
@@ -81,7 +86,7 @@
         $secret_key_hex = $encryption_result['secret_key'];
 
         // Register the user with the encrypted password and secret key
-        if (registerUser($cust_email, $cust_uname, $encrypted_password, $secret_key_hex)) {
+        if (registerUser($cust_email, $cust_uname, $cust_lname, $cust_contact, $cust_address, $encrypted_password, $secret_key_hex)) {
             echo "<script>alert('Account created! Please login to your account');</script>";
             echo "<script>window.location.href = 'content.php';</script>";
             exit();

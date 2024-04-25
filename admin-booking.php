@@ -13,6 +13,12 @@ if (isset($_SESSION['ad_uname'])) {
 } else {
   $username = ''; // Set username to empty if user is not logged in
 }
+// Redirect to login page if user is not logged in
+if (empty($username)) {
+  echo "<script>alert('Please login first.');</script>";
+  echo "<script>window.location.href = 'content.php';</script>";
+  exit;
+}
 
 // Handle search query
 if (isset($_POST['search'])) {
@@ -1028,7 +1034,7 @@ input[type="date"]::placeholder { /* Style the placeholder text */
         <span class="close-btn material-symbols-rounded">close</span>
         <li><a href="admin-booking.php"><span class="home">Manage Booking</span></a></li>
         <li><a href="admin-content.php"><span class="booking">Manage Content</span></a></li>
-        <li><a href=""><span class="">Customer Information</span></a></li>
+        <li><a href="admin-customerinfo.php"><span class="">Customer Information</span></a></li>
         <a href="logout.php" class="logout-btn">LOG OUT</a>
       </ul>
     <?php } else { ?>
