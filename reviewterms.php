@@ -269,6 +269,9 @@ function goBack() {
 				<li>Venue capacity may adjust depending on the LGU guidelines</li>
 			</ol>
 
+			<p>After a booking is placed, kindly meet an admin to sign the reservation form in our office located in 315 Buliran Rd. Sitio Bayugo, Antipolo, Philippines, 1870 within 24 hours. 
+			<br><br>If a booking reservation is made outside the country, a representative is valid, provided that there is a signature on the form by the representative.</p>
+
 			
 		</section>
 		<footer class="modal-container-footer">
