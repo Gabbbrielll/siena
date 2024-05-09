@@ -9,7 +9,7 @@
        /* Basic styles */
        background-color: #f1d6a5; 
        border: none;
-       color: white;
+       color: #50262f;
        padding: 15px 32px;
        text-align: center;
        text-decoration: none;
@@ -26,10 +26,7 @@
        background-size:cover;
      }
 
-     a{
-       text-decoration: none;
-       color: #50262f;
-     }
+    
 
      .button-container {
        text-align: center; 
@@ -38,7 +35,9 @@
 </head>
 <body>
   <div class="button-container">
-    <button><a href="content.php">Proceed to Siena's Events Place </a></button>
+    <form action="content.php" method="get">
+        <button type="submit">Proceed to Siena's Events Place</button>
+      </form>
   </div>
 </body>
 </html>
